@@ -1,10 +1,10 @@
-import About from "@/components/About";
-import Contact from "@/components/Contact";
-import Experience from "@/components/Experience";
 import LeftSidebar from "@/components/LeftSidebar";
-import Metrics from "@/components/Metrics";
-import Portfolio from "@/components/Portfolio";
-import Skills from "@/components/Skills";
+import About from "@/components/sections/About";
+import Contact from "@/components/sections/Contact";
+import Experience from "@/components/sections/Experience";
+import Metrics from "@/components/sections/Metrics";
+import Portfolio from "@/components/sections/Portfolio";
+import Skills from "@/components/sections/Skills";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 
 const navSections = [
@@ -43,7 +43,7 @@ const Index = () => {
         />
 
         {/* Right content */}
-        <main className="flex-1 pb-16 lg:py-20">
+        <main className="flex-1 pb-16 lg:py-12">
           <About />
           <Experience />
           <Portfolio />
