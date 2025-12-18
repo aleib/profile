@@ -1,8 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @layer base {
   :root {
@@ -37,13 +37,21 @@
     --radius: 0.75rem;
 
     /* Custom gradient tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(175, 80%, 50%), hsl(195, 90%, 55%));
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(175, 80%, 50%),
+      hsl(195, 90%, 55%)
+    );
     --gradient-glow: 0 0 60px hsl(175 80% 50% / 0.3);
-    --gradient-card: linear-gradient(145deg, hsl(220, 20%, 9%), hsl(220, 20%, 6%));
-    
+    --gradient-card: linear-gradient(
+      145deg,
+      hsl(220, 20%, 9%),
+      hsl(220, 20%, 6%)
+    );
+
     /* Typography */
-    --font-display: 'Space Grotesk', sans-serif;
-    --font-body: 'Inter', system-ui, sans-serif;
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "Inter", system-ui, sans-serif;
 
     /* Shadows */
     --shadow-sm: 0 2px 8px hsl(0 0% 0% / 0.3);
@@ -90,7 +98,11 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 175 80% 40%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(175, 80%, 40%), hsl(195, 80%, 45%));
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(175, 80%, 40%),
+      hsl(195, 80%, 45%)
+    );
     --gradient-glow: 0 0 60px hsl(175 80% 40% / 0.2);
     --shadow-glow: 0 0 40px hsl(175 80% 40% / 0.1);
   }
@@ -109,7 +121,12 @@
     @apply bg-background text-foreground font-body antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-display;
   }
 }
@@ -130,13 +147,14 @@
   }
 
   .glow-border::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: -1px;
     border-radius: inherit;
     padding: 1px;
     background: var(--gradient-primary);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -149,7 +167,7 @@
   }
 
   .section-container {
-    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }
 

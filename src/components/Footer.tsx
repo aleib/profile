@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, WandSparkles } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -47,7 +47,7 @@ const Footer = () => {
           {/* Copyright */}
           <div className="text-sm text-muted-foreground flex items-center gap-1">
             <span>Built with</span>
-            <Heart className="w-4 h-4 text-primary fill-primary" />
+            <WandSparkles className="w-4 h-4 text-primary fill-primary" />
             <span>by Alex Leibhammer © {new Date().getFullYear()}</span>
           </div>
         </div>

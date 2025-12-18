@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const About = () => {
@@ -9,7 +8,7 @@ const About = () => {
   return (
     <section id="about" className="py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/5 to-transparent" />
-      
+
       <div className="section-container relative z-10">
         <motion.div
           ref={ref}
@@ -21,18 +20,32 @@ const About = () => {
           <h2 className="text-3xl sm:text-4xl font-display font-bold mb-8 text-center">
             About Me
           </h2>
-          
-          <div className="glass-card rounded-2xl p-8 sm:p-10">
-            <p className="text-lg sm:text-xl leading-relaxed text-muted-foreground">
-              I build production-grade frontends and lead engineering for data and AI-driven products. 
-              I've spent five years shipping startups across visual analytics, model orchestration, 
-              workflow automation and large-scale audience content. I combine React/TypeScript depth 
-              with product leadership—owning UI architecture, reliability, performance and execution.
+
+          <div className="glass-card rounded-2xl p-8 sm:p-10 space-y-6">
+            <p className="text-lg sm:text-xl leading-relaxed text-foreground">
+              I build production-grade frontends and lead engineering for data
+              and AI-driven products. Over the last five years I've co-founded
+              and delivered multiple startups across visual analytics, model
+              orchestration, workflow automation, and large-scale content
+              systems.
+            </p>
+
+            <p className="text-lg sm:text-xl leading-relaxed text-foreground">
+              I combine frontend expertise with product sensibility—owning
+              architecture, reliability, performance, and execution. I've
+              delivered collaborative data canvases, AI-first workspaces for
+              thousands of parallel tasks, consumer features reaching 300K+
+              users, and agentic workflow systems.
+            </p>
+
+            <p className="text-lg sm:text-xl leading-relaxed text-foreground/90 font-medium">
+              I'm most effective where UX quality, engineering execution, and
+              pragmatic leadership intersect.
             </p>
           </div>
-          
+
           {/* Quick highlights */}
-          <motion.div 
+          <motion.div
             className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -44,7 +57,7 @@ const About = () => {
               { label: "Startups Founded", value: "2" },
               { label: "Users Reached", value: "300K+" },
             ].map((stat, index) => (
-              <div 
+              <div
                 key={stat.label}
                 className="text-center p-4 rounded-xl bg-secondary/30 border border-border/50"
               >
