@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const skills = [
@@ -26,7 +25,7 @@ const Skills = () => {
   return (
     <section id="skills" className="py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/5 to-transparent" />
-      
+
       <div className="section-container relative z-10">
         <motion.div
           ref={ref}
@@ -38,7 +37,7 @@ const Skills = () => {
             Skills & Technologies
           </h2>
 
-          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-3 section-inner">
             {skills.map((skill, index) => (
               <motion.span
                 key={skill}

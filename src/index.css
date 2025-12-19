@@ -169,6 +169,10 @@
   .section-container {
     @apply max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+
+  .section-inner {
+    @apply max-w-3xl mx-auto;
+  }
 }
 
 @layer utilities {
