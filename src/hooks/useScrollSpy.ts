@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type UseScrollSpyOptions = {
   /**
@@ -7,18 +7,32 @@ type UseScrollSpyOptions = {
    */
   sectionIds: readonly string[];
   /**
-   * Tuning knob for when a section is considered "active".
-   * Negative top/bottom values generally feel best for scroll-spy.
+   * Back-compat knob from the previous IntersectionObserver implementation.
+   *
+   * We *approximate* this by deriving `activationPoint` from the top margin when it is a percentage,
+   * e.g. "-35% 0px -60% 0px" -> activationPoint ~ 0.35.
    */
   rootMargin?: string;
   /**
-   * Multiple thresholds helps produce stable updates across differently-sized sections.
+   * Back-compat only (no longer used in the scroll-position based implementation).
    */
   threshold?: number | readonly number[];
   /**
    * The initial active id before the observer fires.
    */
   defaultActiveId?: string;
+  /**
+   * Where in the viewport (or scroll container) we consider the "reading line" for determining
+   * the active section.
+   *
+   * `0` = very top, `0.5` = middle, `1` = bottom.
+   */
+  activationPoint?: number;
+  /**
+   * Optional scroll container. If provided, we listen to its `scroll` event and compute positions
+   * relative to its viewport. If omitted, we use `window`.
+   */
+  root?: HTMLElement | null;
 };
 
 /**
@@ -31,46 +45,101 @@ type UseScrollSpyOptions = {
 export function useScrollSpy({
   sectionIds,
   rootMargin = "-40% 0px -55% 0px",
-  threshold = [0.1, 0.25, 0.5],
   defaultActiveId = sectionIds[0] ?? "",
+  activationPoint,
+  root,
 }: UseScrollSpyOptions) {
   const [activeId, setActiveId] = useState(defaultActiveId);
 
   // Avoid effect re-runs due to referential changes; ids are the actual semantic dependency.
   const stableIdsKey = useMemo(() => sectionIds.join("|"), [sectionIds]);
+  const ids = useMemo(() => {
+    if (!stableIdsKey) return [];
+    return stableIdsKey.split("|").filter(Boolean);
+  }, [stableIdsKey]);
+
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (sectionIds.length === 0) return;
+    if (ids.length === 0) return;
 
-    const elements = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el !== null);
+    const parseActivationFromRootMargin = (margin: string) => {
+      const topToken = margin.trim().split(/\s+/)[0] ?? "";
+      if (!topToken.endsWith("%")) return null;
 
-    if (elements.length === 0) return;
+      const parsed = Number.parseFloat(topToken);
+      if (!Number.isFinite(parsed)) return null;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
-        if (visible.length === 0) return;
+      const pct = Math.abs(parsed) / 100;
+      return Number.isFinite(pct) ? Math.min(1, Math.max(0, pct)) : null;
+    };
 
-        // Pick the most "present" section to prevent edge flicker near boundaries.
-        const best = [...visible].sort(
-          (a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0),
-        )[0];
+    const resolvedActivationPoint =
+      activationPoint ??
+      parseActivationFromRootMargin(rootMargin) ??
+      // A touch above center generally feels like "reading position".
+      0.4;
 
-        const id = (best?.target as HTMLElement | undefined)?.id;
-        if (id) setActiveId(id);
-      },
-      { rootMargin, threshold: threshold as number | number[] },
-    );
+    const computeActiveId = () => {
+      const rootEl = root ?? null;
+      const rootRect = rootEl?.getBoundingClientRect() ?? null;
+      const rootTop = rootRect?.top ?? 0;
+      const rootHeight = rootRect?.height ?? window.innerHeight;
+      const activationY = rootTop + rootHeight * resolvedActivationPoint;
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stableIdsKey, rootMargin]);
+      const sections = ids
+        .map((id) => {
+          const el = document.getElementById(id);
+          if (!el) return null;
+          return { id, top: el.getBoundingClientRect().top };
+        })
+        .filter((s): s is { id: string; top: number } => s !== null)
+        .sort((a, b) => a.top - b.top);
+
+      if (sections.length === 0) return;
+
+      // Choose the last section whose top is above the activation line.
+      // This is stable and matches "what I'm currently reading".
+      let nextId = sections[0]?.id ?? "";
+      for (const section of sections) {
+        if (section.top <= activationY) nextId = section.id;
+      }
+
+      if (!nextId) return;
+      setActiveId((prev) => (prev === nextId ? prev : nextId));
+    };
+
+    const scheduleCompute = () => {
+      if (rafRef.current !== null) return;
+      rafRef.current = window.requestAnimationFrame(() => {
+        rafRef.current = null;
+        computeActiveId();
+      });
+    };
+
+    const scrollTarget: Window | HTMLElement = root ?? window;
+    scrollTarget.addEventListener("scroll", scheduleCompute, { passive: true });
+    window.addEventListener("resize", scheduleCompute, { passive: true });
+
+    // Mount + DOM changes (late sections) should also update the active id.
+    scheduleCompute();
+    const mutationObserver = new MutationObserver(scheduleCompute);
+    mutationObserver.observe(document.body, { subtree: true, childList: true });
+
+    return () => {
+      mutationObserver.disconnect();
+      scrollTarget.removeEventListener(
+        "scroll",
+        scheduleCompute as EventListener
+      );
+      window.removeEventListener("resize", scheduleCompute as EventListener);
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+    };
+  }, [ids, activationPoint, root, rootMargin]);
 
   return activeId;
 }
-
-
