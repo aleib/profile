@@ -17,9 +17,9 @@ const About = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-3xl mx-auto"
         >
-          <h2 className="text-2xl sm:text-3xl font-display font-bold mb-8">
+          {/* <h2 className="text-2xl sm:text-3xl font-display font-bold mb-8">
             About Me
-          </h2>
+          </h2> */}
 
           <div className="space-y-6 text-base sm:text-lg leading-relaxed text-foreground/70 font-normal">
             <p className="">
@@ -47,7 +47,7 @@ const About = () => {
           </div>
 
           {/* Quick highlights */}
-          <motion.div
+          {/* <motion.div
             className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -71,7 +71,7 @@ const About = () => {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
     </section>

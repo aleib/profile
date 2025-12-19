@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { motion, useInView } from "framer-motion";
-import { ExternalLink, Play } from "lucide-react";
+import { ArrowRight, ExternalLink, Play } from "lucide-react";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 type Project = {
   name: string;
@@ -13,7 +14,7 @@ type Project = {
   isVideo?: boolean;
 };
 
-// Ordered chronologically: most recent first
+// Featured products for the homepage (most recent first)
 const projects: Project[] = [
   {
     name: "Overclock",
@@ -21,7 +22,7 @@ const projects: Project[] = [
       "Agentic workflows for SaaS teams. Decomposes natural-language requests into discrete steps, executes with connected integrations, and continuously improves via feedback.",
     url: "https://overclock.work/",
     tags: ["AI", "Automation", "SaaS"],
-    period: "May 2025 – Present",
+    period: "2025",
     highlight: "Current",
   },
   {
@@ -30,7 +31,7 @@ const projects: Project[] = [
       "Voice-to-audience engine that extrapolates your linguistic fingerprint from voice notes or text and drafts social content reflecting genuine expertise.",
     url: "https://coauthor.studio/",
     tags: ["AI", "Content", "Social"],
-    period: "Jan 2024 – Apr 2025",
+    period: "2024 – 2025",
   },
   {
     name: "LinkedIn Rewind 2024",
@@ -47,25 +48,16 @@ const projects: Project[] = [
       "AI workspace and execution system. Model orchestration, structured templates, and execution primitives for complex research, writing, and product workflows.",
     url: "https://hunch.tools/",
     tags: ["AI", "Workspace", "Orchestration"],
-    period: "May 2023 – Dec 2024",
-  },
-  {
-    name: "Neon",
-    description:
-      "Collaborative visual analytics canvas. Drag datasets onto a shared canvas, create interactive charts, and link related tables automatically.",
-    url: "https://www.loom.com/share/f72ed8cfaec841499d97e087dc0bcf74",
-    tags: ["Analytics", "Data Viz", "Collaboration"],
-    period: "Aug 2021 – Apr 2023",
-    isVideo: true,
+    period: "2023 – 2024",
   },
 ];
 
-const Portfolio = () => {
+const Work = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="portfolio" className="py-24 relative">
+    <section id="work" className="py-24 relative">
       <div className="section-container">
         <motion.div
           ref={ref}
@@ -74,10 +66,10 @@ const Portfolio = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h2 className="text-3xl sm:text-4xl font-display font-bold mb-12 text-center">
-            Portfolio
+            Work
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-1 gap-6 max-w-5xl mx-auto">
             {projects.map((project, index) => (
               <motion.div
                 key={project.name}
@@ -141,10 +133,26 @@ const Portfolio = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* View all link */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="mt-10 text-center"
+          >
+            <Link
+              to="/work"
+              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
+            >
+              View all work
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
     </section>
   );
 };
 
-export default Portfolio;
+export default Work;

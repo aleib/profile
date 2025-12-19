@@ -3,16 +3,16 @@ import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
 import Experience from "@/components/sections/Experience";
 import Metrics from "@/components/sections/Metrics";
-import Portfolio from "@/components/sections/Portfolio";
 import Skills from "@/components/sections/Skills";
+import Work from "@/components/sections/Work";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 
 const navSections = [
   { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
-  { id: "portfolio", label: "Projects" },
-  { id: "skills", label: "Skills" },
+  { id: "work", label: "Products" },
   { id: "metrics", label: "Impact" },
+  { id: "experience", label: "Experience" },
+  { id: "skills", label: "Skills" },
   { id: "contact", label: "Contact" },
 ] as const;
 
@@ -35,7 +35,7 @@ const Index = () => {
         />
       </div>
 
-      <div className="section-container relative z-10 lg:flex lg:gap-16">
+      <div className="section-container relative z-10 lg:flex lg:gap-24">
         {/* Left sidebar */}
         <LeftSidebar
           navSections={navSections}
@@ -43,12 +43,12 @@ const Index = () => {
         />
 
         {/* Right content */}
-        <main className="flex-1 pb-16 lg:py-12">
+        <main className="flex-1 py-16 lg:py-24">
           <About />
-          <Experience />
-          <Portfolio />
-          <Skills />
+          <Work />
           <Metrics />
+          <Experience />
+          <Skills />
           <Contact />
         </main>
       </div>

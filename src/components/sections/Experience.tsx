@@ -1,49 +1,50 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Briefcase, ExternalLink } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { useCallback, useRef } from "react";
+import { Link } from "react-router-dom";
 
-const experiences = [
-  {
-    company: "Overclock",
-    role: "Product & Engineering",
-    period: "May 2025 – Present",
-    url: "https://overclock.work/",
-    description: [
-      "Builds agentic workflows from natural-language requests",
-      "Frontend architecture, integrations, telemetry, execution UX",
-    ],
-    current: true,
-  },
+type ExperienceLink = {
+  label: string;
+  url: string;
+};
+
+type ExperienceItem = {
+  company: string;
+  role: string;
+  period: string;
+  url: string;
+  /** Short 2–3 line summary for scannability. */
+  summary: string;
+  /** Optional related links (press, docs, etc.) shown as a third row. */
+  links?: ExperienceLink[];
+  current?: boolean;
+};
+
+const experiences: ExperienceItem[] = [
   {
     company: "Hunch",
-    role: "Co-founder, Head of Product & Engineering",
-    period: "May 2023 – Dec 2024",
+    role: "Co-founder",
+    period: "2021 - 2025",
     url: "https://hunch.tools/",
-    description: [
-      "AI-first workspace for orchestrating models, templates and executions",
-      "Ran product and engineering for canvas, templates, parallel execution",
-    ],
+    summary:
+      "Venture-backed AI platform for teams — model orchestration, templates, and batch execution. Led product and engineering; designed the core canvas and parallel execution system.",
+    current: false,
   },
   {
-    company: "Coauthor",
-    role: "Product Lead / Engineer",
-    period: "Jan 2024 – Apr 2025",
-    url: "https://coauthor.studio/",
-    description: [
-      "Launched LinkedIn Rewind 2024 (300k+ users)",
-      "Speech-to-audience content engine, linguistic style extraction",
-    ],
+    company: "Aruba, a Hewlett Packard Enterprise company",
+    role: "Engineering Manager & Frontend Lead",
+    period: "2018 – 2020",
+    url: "https://www.arubanetworks.com/",
+    summary:
+      "Frontend tech lead & manager for Cape Networks (User Experience Insight at Aruba). Built industry-leading software for networking teams, putting design and ease of use first.",
   },
   {
-    company: "Neon",
-    role: "Co-founder, Frontend Engineer",
-    period: "Aug 2021 – Apr 2023",
-    url: "https://www.loom.com/share/f72ed8cfaec841499d97e087dc0bcf74",
-    description: [
-      "Collaborative visual analytics canvas",
-      "Drag-and-drop data, auto-joins, interactive charts",
-    ],
+    company: "Cape Networks",
+    role: "Software Engineer",
+    period: "2016 – 2018",
+    url: "https://www.arubanetworks.com/",
+    summary:
+      "Network monitoring product — sensors mimic users to test WiFi from their perspective. Built simple dashboards and reports to detect issues instantly and troubleshoot remotely.",
   },
 ];
 
@@ -51,8 +52,16 @@ const Experience = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  /**
+   * Makes the whole row feel like one "card link" while still allowing nested
+   * links (third-row items) without invalid anchor nesting.
+   */
+  const openExternal = useCallback((url: string) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  }, []);
+
   return (
-    <section id="experience" className="py-24 relative">
+    <section id="experience" className="py-24 relative -mx-10">
       <div className="section-container">
         <motion.div
           ref={ref}
@@ -60,79 +69,101 @@ const Experience = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-3xl sm:text-4xl font-display font-bold mb-12 text-center">
+          {/* <h2 className="text-3xl sm:text-4xl font-display font-bold mb-12 text-center">
             Experience
-          </h2>
+          </h2> */}
 
-          <div className="relative max-w-3xl mx-auto">
-            {/* Timeline line */}
-            <div className="absolute left-0 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-primary/20 to-transparent" />
-
-            <div className="space-y-8">
+          <div className="relative max-w-[51rem] mx-auto">
+            <div className="space-y-4">
               {experiences.map((exp, index) => (
                 <motion.div
                   key={exp.company}
                   initial={{ opacity: 0, x: -20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: index * 0.15, duration: 0.6 }}
-                  className="relative pl-8 sm:pl-20"
+                  className="relative"
                 >
-                  {/* Timeline dot */}
-                  <div className={`absolute left-0 sm:left-8 -translate-x-1/2 w-4 h-4 rounded-full border-2 ${
-                    exp.current 
-                      ? "bg-primary border-primary animate-pulse-glow" 
-                      : "bg-background border-primary/50"
-                  }`} />
+                  <div
+                    role="link"
+                    tabIndex={0}
+                    aria-label={`Open ${exp.company} website`}
+                    onClick={() => openExternal(exp.url)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        openExternal(exp.url);
+                      }
+                    }}
+                    className="group glow-border rounded-xl p-6 outline-none transition-all duration-300 border border-transparent bg-transparent shadow-none cursor-pointer hover:bg-card/80 hover:backdrop-blur-xl hover:border-border/50 hover:shadow-[var(--shadow-md)] focus-visible:ring-2 focus-visible:ring-primary/60"
+                  >
+                    <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-2 sm:gap-6">
+                      {/* Dates-as-bullets */}
+                      <div className="text-xs font-medium tracking-wider text-muted-foreground/80 pt-1">
+                        {exp.period}
+                      </div>
 
-                  <div className="glass-card rounded-xl p-6 hover:border-primary/30 transition-colors group">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg bg-primary/10">
-                          <Briefcase className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-display font-semibold flex items-center gap-2">
-                            {exp.company}
-                            {exp.current && (
-                              <span className="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary font-medium">
+                      <div className="min-w-0">
+                        <div className="flex items-start justify-between gap-4">
+                          <h3 className="text-lg font-display font-semibold leading-snug">
+                            <span className="text-foreground">{exp.role}</span>{" "}
+                            <span className="text-muted-foreground">·</span>{" "}
+                            <span className="text-foreground">
+                              {exp.company}
+                            </span>
+                            {exp.current ? (
+                              <span className="ml-2 align-middle text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary font-medium">
                                 Current
                               </span>
-                            )}
+                            ) : null}
                           </h3>
-                          <p className="text-sm text-muted-foreground">{exp.role}</p>
+
+                          <ArrowUpRight className="mt-1 w-4 h-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" />
                         </div>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm text-muted-foreground font-medium">
-                          {exp.period}
-                        </span>
-                        <a
-                          href={exp.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
-                          aria-label={`Visit ${exp.company}`}
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
+
+                        <p className="mt-2 text-base text-muted-foreground leading-relaxed">
+                          {exp.summary}
+                        </p>
+
+                        {exp.links?.length ? (
+                          <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+                            {exp.links.map((l) => (
+                              <a
+                                key={l.url}
+                                href={l.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                onKeyDown={(e) => e.stopPropagation()}
+                                className="inline-flex items-center gap-1.5 text-sm font-medium text-primary/90 hover:text-primary transition-colors"
+                              >
+                                {l.label}
+                                <ArrowUpRight className="w-3.5 h-3.5" />
+                              </a>
+                            ))}
+                          </div>
+                        ) : null}
                       </div>
                     </div>
-
-                    <ul className="space-y-2">
-                      {exp.description.map((item, i) => (
-                        <li 
-                          key={i} 
-                          className="flex items-start gap-3 text-muted-foreground"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-2 shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 </motion.div>
               ))}
             </div>
+
+            {/* View all link */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="mt-10 text-left ml-6"
+            >
+              <Link
+                to="/experience"
+                className="inline-flex items-center gap-2 text-sm font-normal text-muted-foreground hover:text-foreground transition-colors group"
+              >
+                View full career history
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
           </div>
         </motion.div>
       </div>
