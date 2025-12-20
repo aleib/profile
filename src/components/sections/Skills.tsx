@@ -5,6 +5,7 @@ const skills = [
   "React",
   "TypeScript",
   "JavaScript",
+  "Vite",
   "Vike (SSR/SSG)",
   "Cloudflare",
   "Frontend Architecture",

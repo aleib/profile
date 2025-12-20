@@ -173,6 +173,10 @@
   .section-inner {
     @apply max-w-3xl mx-auto;
   }
+
+  .hover-text-muted-foreground {
+    @apply text-muted-foreground group-hover:text-foreground/80;
+  }
 }
 
 @layer utilities {

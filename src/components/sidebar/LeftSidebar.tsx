@@ -1,4 +1,7 @@
-import { Download, Github, Linkedin, Mail } from "lucide-react";
+import { Download, Mail } from "lucide-react";
+
+import { useThemeMode } from "@/hooks/useThemeMode";
+import { default as SidebarFooter } from "./SidebarFooter";
 
 type NavSection = {
   id: string;
@@ -18,6 +21,8 @@ type LeftSidebarProps = {
  * - Mobile: behave like a sticky “header panel” so navigation is always available
  */
 const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
+  const { mode, setThemeMode } = useThemeMode();
+
   return (
     <aside className="sticky top-0 self-start z-20 bg-background/80 backdrop-blur-xl border-b border-border/50 pt-6 pb-6 lg:z-auto lg:bg-transparent lg:backdrop-blur-0 lg:border-b-0 lg:pt-0 lg:pb-0 lg:top-0 lg:h-screen lg:w-[22rem] lg:flex lg:flex-col lg:justify-between lg:py-20">
       <div>
@@ -87,35 +92,7 @@ const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
         </nav>
       </div>
 
-      <div className="mt-8 lg:mt-0 mb-6">
-        <div className="flex items-center gap-4">
-          <a
-            href="https://github.com/aleib"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-lg bg-secondary/40 hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="GitHub"
-          >
-            <Github className="w-5 h-5" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/alexleibhammer/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-lg bg-secondary/40 hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="w-5 h-5" />
-          </a>
-          <a
-            href="mailto:aleibhammer@gmail.com"
-            className="p-2 rounded-lg bg-secondary/40 hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Email"
-          >
-            <Mail className="w-5 h-5" />
-          </a>
-        </div>
-      </div>
+      <SidebarFooter />
     </aside>
   );
 };

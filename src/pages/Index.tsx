@@ -1,10 +1,10 @@
-import LeftSidebar from "@/components/LeftSidebar";
 import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
 import Experience from "@/components/sections/Experience";
 import Metrics from "@/components/sections/Metrics";
 import Skills from "@/components/sections/Skills";
 import Work from "@/components/sections/Work";
+import LeftSidebar from "@/components/sidebar/LeftSidebar";
 import { usePointerGlow } from "@/hooks/usePointerGlow";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 
