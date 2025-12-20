@@ -35,6 +35,7 @@ const Metrics = () => {
 
   return (
     <section id="metrics" className="py-24 relative overflow-hidden">
+      <h2 className="section-header">Impact</h2>
       {/* <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5" /> */}
 
       <div className="section-container relative z-10">

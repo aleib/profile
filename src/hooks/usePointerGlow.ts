@@ -38,8 +38,8 @@ type UsePointerGlowResult<T extends HTMLElement> = {
  * - Avoid doing work on touch devices or for users who prefer reduced motion
  */
 export function usePointerGlow<T extends HTMLElement>({
-  radiusPx = 520,
-  opacity = 0.12,
+  radiusPx = 760,
+  opacity = 0.05,
   disabled = false,
 }: UsePointerGlowOptions = {}): UsePointerGlowResult<T> {
   const containerRef = useRef<T | null>(null);

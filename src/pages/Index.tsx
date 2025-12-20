@@ -7,6 +7,7 @@ import Work from "@/components/sections/Work";
 import LeftSidebar from "@/components/sidebar/LeftSidebar";
 import { usePointerGlow } from "@/hooks/usePointerGlow";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
+import { cn } from "@/lib/utils";
 
 const navSections = [
   { id: "about", label: "About" },
@@ -22,29 +23,22 @@ const Index = () => {
     containerRef,
     glowStyle,
     isActive: isGlowActive,
-  } = usePointerGlow<HTMLDivElement>({
-    // Slightly larger radius keeps the glow ambient and subtle on the full-page layout.
-    radiusPx: 760,
-    opacity: 0.05,
-  });
+  } = usePointerGlow<HTMLDivElement>();
 
   const activeSectionId = useScrollSpy({
     sectionIds: navSections.map((s) => s.id),
-    // Slightly biased towards the center of the viewport so the highlight feels like "reading position".
-    rootMargin: "-35% 0px -60% 0px",
   });
 
   return (
     <div ref={containerRef} className="min-h-screen bg-background relative">
-      {/* Ambient background (keeps the vibe of the old hero, but works for the 2-column layout). */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
-        {/* Cursor-follow glow: subtle, but adds a bit of "depth" to the dark theme. */}
         <div
           aria-hidden="true"
-          className={`absolute inset-0 transition-opacity duration-300 ${
+          className={cn(
+            "absolute inset-0 transition-opacity duration-300",
             isGlowActive ? "opacity-100" : "opacity-0"
-          }`}
+          )}
           style={glowStyle}
         />
         <div className="absolute top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />

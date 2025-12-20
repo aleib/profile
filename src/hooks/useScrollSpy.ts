@@ -44,7 +44,8 @@ type UseScrollSpyOptions = {
  */
 export function useScrollSpy({
   sectionIds,
-  rootMargin = "-40% 0px -55% 0px",
+  // Slightly biased towards the center of the viewport so the highlight feels like "reading position".
+  rootMargin = "-35% 0px -60% 0px",
   defaultActiveId = sectionIds[0] ?? "",
   activationPoint,
   root,

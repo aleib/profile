@@ -20,7 +20,7 @@ May 2023 - Dec 2024
 Website: https://hunch.tools/
 Docs: https://hunch.tools/docs/introduction
 X: https://x.com/hunchtools
-YouTube: https://www.youtube.com/@HunchTools
+YouTube Explainer video: https://www.youtube.com/@HunchTools
 
 Hunch overview:
 Hunch is an AI-first workspace for teams that combines model orchestration, structured templates, and execution primitives (batch runs, web scraping, and embedded code execution) to automate complex research, writing, and product workflows. I led product and engineering efforts to design the core canvas, templates and tooling that enable teams to create reusable AI tools and run thousands of tasks in parallel.
@@ -51,7 +51,7 @@ May 2025 - present
 Website: https://overclock.work/
 About: https://overclock.work/about/
 Docs:https://overclock.work/docs/
-YouTube explainer: https://youtu.be/wQr27857gy8?si=eUXemn5itjUijHr_
+YouTube Explainer video: https://youtu.be/wQr27857gy8?si=eUXemn5itjUijHr_
 
 Overclock overview:
 Overclock decomposes a plain-English request into discrete steps, executes them with connected integrations, and continuously improves via feedback and internal review agents so results become more reliable over time. It’s positioned for solo marketers, small/oversubscribed SaaS teams, and agencies; typical use cases include competitor tracking, pre-call research briefs, social monitoring and response, churn/feedback synthesis, and automated changelogs or monthly performance analyses. The product is invite-only beta with credit-based pricing tiers (starter and pro plans).

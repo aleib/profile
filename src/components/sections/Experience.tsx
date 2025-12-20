@@ -65,20 +65,18 @@ const Experience = () => {
       <div className="section-container">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 0 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* <h2 className="text-3xl sm:text-4xl font-display font-bold mb-12 text-center">
-            Experience
-          </h2> */}
+          <h2 className="section-header">Experience</h2>
 
           <div className="relative max-w-[51rem] mx-auto">
             <div className="space-y-4">
               {experiences.map((exp, index) => (
                 <motion.div
                   key={exp.company}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: 20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: index * 0.15, duration: 0.6 }}
                   className="relative"
