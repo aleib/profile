@@ -7,6 +7,8 @@ import LeftSidebar from "@/components/sidebar/LeftSidebar";
 import { usePointerGlow } from "@/hooks/usePointerGlow";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { cn } from "@/lib/utils";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const navSections = [
   { id: "about", label: "About" },
@@ -18,6 +20,8 @@ const navSections = [
 ] as const;
 
 const Index = () => {
+  const location = useLocation();
+
   const {
     containerRef,
     glowStyle,
@@ -27,6 +31,16 @@ const Index = () => {
   const activeSectionId = useScrollSpy({
     sectionIds: navSections.map((s) => s.id),
   });
+
+  // Handle hash navigation (e.g., /#contact)
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location.hash]);
 
   return (
     <div

@@ -3,11 +3,16 @@ import LeftSidebar from "@/components/sidebar/LeftSidebar";
 import { allWorkProjects } from "@/data/work";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const navSections = [{ id: "work", label: "Work" }] as const;
 
 const WorkPage = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
+
   return (
     <div className="min-h-screen bg-background relative">
       {/* Ambient background */}

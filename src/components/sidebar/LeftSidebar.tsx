@@ -1,4 +1,5 @@
 import { Download, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import { useThemeMode } from "@/hooks/useThemeMode";
 import { default as SidebarFooter } from "./SidebarFooter";
@@ -10,7 +11,7 @@ type NavSection = {
 
 type LeftSidebarProps = {
   navSections: readonly NavSection[];
-  activeSectionId: string;
+  activeSectionId?: string;
 };
 
 /**
@@ -42,13 +43,13 @@ const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
           </p>
 
           <div className="flex flex-wrap gap-3">
-            <a
-              href="#contact"
+            <Link
+              to="/#contact"
               className="inline-flex items-center gap-2 rounded-lg bg-primary/15 text-primary px-3 py-2 text-sm font-medium hover:bg-primary/20 transition-colors"
             >
               <Mail className="w-4 h-4" />
               Get in touch
-            </a>
+            </Link>
             <a
               href="/cv.pdf"
               download

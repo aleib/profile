@@ -1,6 +1,14 @@
+import LeftSidebar from "@/components/sidebar/LeftSidebar";
+import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { motion } from "framer-motion";
 import { ArrowLeft, Briefcase, ExternalLink } from "lucide-react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+
+const navSections = [
+  { id: "experience", label: "Experience" },
+  { id: "education", label: "Education" },
+] as const;
 
 type Experience = {
   company: string;
@@ -123,6 +131,15 @@ const education = {
 };
 
 const ExperiencePage = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
+
+  const activeSectionId = useScrollSpy({
+    sectionIds: navSections.map((s) => s.id),
+    activationPoint: 0.8,
+  });
+
   return (
     <div className="min-h-screen bg-background relative">
       {/* Ambient background */}
@@ -135,150 +152,157 @@ const ExperiencePage = () => {
         />
       </div>
 
-      <div className="section-container relative z-10 py-12">
-        {/* Back link */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group mb-8"
+      <div className="section-container relative z-10 lg:flex lg:gap-24">
+        <LeftSidebar
+          navSections={navSections}
+          activeSectionId={activeSectionId}
+        />
+
+        <main id="experience" className="flex-1 py-16 lg:py-24">
+          {/* Back link */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
           >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            Back to home
-          </Link>
-        </motion.div>
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group mb-8"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              Back to home
+            </Link>
+          </motion.div>
 
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-12"
-        >
-          <h1 className="text-4xl sm:text-5xl font-display font-bold mb-4">
-            Experience
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl">
-            15+ years of building software — from network monitoring and
-            hospitality systems to AI-powered products and consumer-scale
-            launches.
-          </p>
-        </motion.div>
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-12"
+            id="experience"
+          >
+            <h1 className="text-4xl sm:text-5xl font-display font-bold mb-4">
+              Experience
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              15+ years of building software — from network monitoring and
+              hospitality systems to AI-powered products and consumer-scale
+              launches.
+            </p>
+          </motion.div>
 
-        {/* Timeline */}
-        <div className="relative max-w-4xl">
-          <div className="absolute left-0 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-primary/20 to-transparent" />
+          {/* Timeline */}
+          <div className="relative max-w-4xl">
+            <div className="absolute left-0 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-primary/20 to-transparent" />
 
-          <div className="space-y-6">
-            {allExperiences.map((exp, index) => (
-              <motion.div
-                key={`${exp.company}-${exp.period}`}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 + index * 0.08, duration: 0.5 }}
-                className="relative pl-8 sm:pl-20"
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-0 sm:left-8 -translate-x-1/2 w-3 h-3 rounded-full border-2 bg-background border-primary/50" />
+            <div className="space-y-6">
+              {allExperiences.map((exp, index) => (
+                <motion.div
+                  key={`${exp.company}-${exp.period}`}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 + index * 0.08, duration: 0.5 }}
+                  className="relative pl-8 sm:pl-20"
+                >
+                  {/* Timeline dot */}
+                  <div className="absolute left-0 sm:left-8 -translate-x-1/2 w-3 h-3 rounded-full border-2 bg-background border-primary/50" />
 
-                <div className="glass-card rounded-xl p-6 hover:border-primary/30 transition-colors">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-                    <div className="flex items-start gap-3">
-                      <div className="p-2 rounded-lg bg-primary/10 mt-0.5">
-                        <Briefcase className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <h2 className="text-xl font-display font-semibold flex items-center gap-2 flex-wrap">
-                          {exp.company}
-                        </h2>
-                        <p className="text-sm text-muted-foreground">
-                          {exp.role}
-                        </p>
-                        {exp.location ? (
-                          <p className="text-xs text-muted-foreground/70 mt-1">
-                            {exp.location}
+                  <div className="glass-card rounded-xl p-6 hover:border-primary/30 transition-colors">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 rounded-lg bg-primary/10 mt-0.5">
+                          <Briefcase className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <h2 className="text-xl font-display font-semibold flex items-center gap-2 flex-wrap">
+                            {exp.company}
+                          </h2>
+                          <p className="text-sm text-muted-foreground">
+                            {exp.role}
                           </p>
+                          {exp.location ? (
+                            <p className="text-xs text-muted-foreground/70 mt-1">
+                              {exp.location}
+                            </p>
+                          ) : null}
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3 shrink-0">
+                        <span className="text-sm text-muted-foreground font-medium font-mono">
+                          {exp.period}
+                        </span>
+                        {exp.url ? (
+                          <a
+                            href={exp.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
+                            aria-label={`Visit ${exp.company}`}
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                          </a>
                         ) : null}
                       </div>
                     </div>
-                    <div className="flex items-center gap-3 shrink-0">
-                      <span className="text-sm text-muted-foreground font-medium font-mono">
-                        {exp.period}
-                      </span>
-                      {exp.url ? (
-                        <a
-                          href={exp.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
-                          aria-label={`Visit ${exp.company}`}
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      ) : null}
-                    </div>
-                  </div>
 
-                  <ul className="space-y-1.5 mb-3">
-                    {exp.description.map((item, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-3 text-muted-foreground text-sm"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-1.5 shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {exp.technologies ? (
-                    <div className="flex flex-wrap gap-1.5 mt-3">
-                      {exp.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-xs px-2 py-0.5 rounded-md bg-secondary/50 text-muted-foreground"
+                    <ul className="space-y-1.5 mb-3">
+                      {exp.description.map((item, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start gap-3 text-muted-foreground text-sm"
                         >
-                          {tech}
-                        </span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-1.5 shrink-0" />
+                          {item}
+                        </li>
                       ))}
-                    </div>
-                  ) : null}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                    </ul>
 
-        {/* Education */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="mt-16 max-w-4xl"
-        >
-          <h2 className="text-2xl font-display font-bold mb-6">Education</h2>
-          <div className="glass-card rounded-xl p-6">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-              <div>
-                <h3 className="text-lg font-display font-semibold">
-                  {education.institution}
-                </h3>
-                <p className="text-muted-foreground">{education.degree}</p>
-              </div>
-              <span className="text-sm text-muted-foreground font-mono">
-                {education.period}
-              </span>
+                    {exp.technologies ? (
+                      <div className="flex flex-wrap gap-1.5 mt-3">
+                        {exp.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="text-xs px-2 py-0.5 rounded-md bg-secondary/50 text-muted-foreground"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
-        </motion.div>
+
+          {/* Education */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="mt-16 max-w-4xl pb-40 pt-10"
+            id="education"
+          >
+            <h2 className="text-2xl font-display font-bold mb-6">Education</h2>
+            <div className="glass-card rounded-xl p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <div>
+                  <h3 className="text-lg font-display font-semibold">
+                    {education.institution}
+                  </h3>
+                  <p className="text-muted-foreground">{education.degree}</p>
+                </div>
+                <span className="text-sm text-muted-foreground font-mono">
+                  {education.period}
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        </main>
       </div>
     </div>
   );
 };
 
 export default ExperiencePage;
-
-

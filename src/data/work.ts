@@ -120,7 +120,7 @@ export const allWorkProjects: WorkProject[] = [
   {
     name: "Neon",
     description:
-      "Co-built the frontend for Neon, a collaborative visual analytics canvas that helped secure venture capital funding. Users drag datasets (CSV, BigQuery, Snowflake) onto a shared canvas, create interactive charts, and link related tables automatically—no manual joins required.",
+      "Built the frontend for Neon, a collaborative visual analytics canvas that helped secure venture capital funding. Users drag datasets (CSV, BigQuery, Snowflake) onto a shared canvas, create interactive charts, and link related tables automatically—no manual joins required.",
     moreInfo: [
       "Architected a real-time, highly interactive canvas with drag-and-drop charting, automatic schema inference, and seamless cross-dataset linking.",
       "Designed UX patterns that surface distributions, time series, and cross-dataset insights while preserving SQL access for power users.",
@@ -130,8 +130,10 @@ export const allWorkProjects: WorkProject[] = [
     tags: ["Analytics", "Data Viz", "Collaboration", "Canvas"],
     period: "Aug 2021 - Apr 2023",
     isVideo: true,
-    role: "Co-founder, Frontend",
+    role: "Co-creator, Frontend",
     featured: false,
+    imageSrc: "/images/neon-canvas.jpg",
+    imageAlt: "Neon canvas screenshot",
   },
 ];
 
