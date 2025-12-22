@@ -53,12 +53,10 @@ const Work = () => {
                 project.name
               )}`;
               const isExpanded = expandedProjectName === project.name;
-              const description = project.moreInfo ?? project.description;
-              const descriptionLines = Array.isArray(description)
-                ? description
+              const description = project.description;
+              const moreInfo = Array.isArray(project.moreInfo)
+                ? project.moreInfo
                 : null;
-              const [descriptionIntro, ...descriptionBullets] =
-                descriptionLines ?? [];
 
               return (
                 <motion.div
@@ -134,44 +132,32 @@ const Work = () => {
                             id={detailsId}
                             transition={{ duration: 0.18, ease: "easeOut" }}
                             className={cn(
-                              "block text-base leading-relaxed hover-text-muted-foreground text-foreground/80",
-                              descriptionLines == null
-                                ? "whitespace-pre-wrap"
-                                : null
+                              "block text-base leading-relaxed hover-text-muted-foreground text-foreground/80 whitespace-pre-wrap"
                             )}
                           >
-                            {descriptionLines ? (
-                              <>
-                                <p
-                                  className={cn(
-                                    "whitespace-pre-wrap",
-                                    isExpanded ? null : "line-clamp-3"
-                                  )}
-                                >
-                                  {descriptionIntro}
-                                </p>
-                                {isExpanded && descriptionBullets.length > 0 ? (
-                                  <ul className="mt-3 list-disc pl-5 space-y-1">
-                                    {descriptionBullets.map((item) => (
-                                      <li
-                                        key={item}
-                                        className="marker:text-foreground/30"
-                                      >
-                                        {item}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                ) : null}
-                              </>
-                            ) : (
-                              <p
-                                className={cn(
-                                  isExpanded ? null : "line-clamp-3"
-                                )}
-                              >
-                                {description}
-                              </p>
-                            )}
+                            <p
+                              className={cn(
+                                "whitespace-pre-wrap",
+                                isExpanded ? null : "line-clamp-3"
+                              )}
+                            >
+                              {description}
+                            </p>
+
+                            {moreInfo ? (
+                              isExpanded && moreInfo.length > 0 ? (
+                                <ul className="mt-3 list-disc pl-5 space-y-1">
+                                  {moreInfo.map((item) => (
+                                    <li
+                                      key={item}
+                                      className="marker:text-foreground/30"
+                                    >
+                                      {item}
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : null
+                            ) : null}
                           </motion.div>
 
                           {!isExpanded && (

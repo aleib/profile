@@ -46,21 +46,16 @@ export const allWorkProjects: WorkProject[] = [
     name: "Overclock",
     nameLink: "https://overclock.work/",
     description:
-      "Overclock is a no-code AI agent platform that automates workflows in the browser. I led the frontend engineering, delivering the customer-facing web app.",
+      "Led frontend engineering for Overclock, a no-code AI agent platform that converts plain-English instructions into automated browser workflows. Architected the end-to-end frontend, agent-builder UI, and human-in-the-loop approval flows.",
     moreInfo: [
-      "Overclock is a no-code AI agent platform that automates workflows in the browser. I led the frontend engineering, delivering the customer-facing web app.",
-      "Converts plain-English instructions into multi-step automated workflows that run on schedules and report back with logs, drafts, and results.",
-      "Targets busy marketers, SaaS teams, and agencies needing research briefs, social listening, content drafts, monthly reporting, and operational automation.",
-      "Runs where teams already work (Slack + web app), with review gates and transparent execution logs to prevent bad outputs.",
-      "Integrates with major tools (Google Workspace, Slack, GitHub, Gmail, Notion, Reddit, X/Twitter, Linear, and others).",
-      "Invite-only beta with credit-based pricing tiers.",
-      "My work: end-to-end frontend architecture, UX flows, reusable component library, responsive UI, onboarding and billing screens, and the interface for connecting and managing integrations.",
-      "Collaborated across product and backend to shape agent observability, approvals, and reliability improvements during beta.",
+      "Designed and implemented reusable component systems and responsive layouts for a complex agent-building interface.",
+      "Built onboarding, billing, and integration management for Google Workspace, Slack, GitHub, Notion, Linear, and more.",
+      "Partnered closely with product and backend to shape agent observability, reliability, and self-healing execution.",
     ],
     url: "https://overclock.work/",
     tags: ["AI", "Automation", "SaaS", "Agentic"],
     period: "May 2025 - Oct 2025",
-    role: "Co-founder, Frontend",
+    role: "Co-creator, Frontend",
     featured: true,
     imageSrc: "/images/overclock-website-light.png",
     imageAlt: "Overclock product screenshot",
@@ -68,13 +63,19 @@ export const allWorkProjects: WorkProject[] = [
   {
     name: "Coauthor",
     description:
-      "Voice-to-audience engine that extrapolates your linguistic fingerprint from voice notes or text and drafts social content reflecting genuine expertise.",
-    moreInfo:
-      "The mission is direct distribution — helping builders cut through generic AI noise, grow reach across platforms, and communicate without surrendering authenticity or hours of weekly writing.",
+      "Co-built Coauthor from inception—an AI writing product that transforms short voice or text inputs into authentic LinkedIn posts. Designed the end-to-end UX, content-generation mechanics, and onboarding flows.",
+    moreInfo: [
+      "Launched after 2024 LinkedIn Rewind to help users grow their LinkedIn presence with AI-assisted content.",
+      "Designed voice-note and text input flows, enabling users to express ideas without prompting complexity.",
+      "Built iterative feedback loops so users can fine-tune content with minimal effort.",
+      "Created an 'interests to ideas' pipeline that surfaces timely, audience-relevant topics.",
+      "Integrated AI media generation to boost post engagement.",
+    ],
+
     url: "https://coauthor.studio/",
     tags: ["AI", "Content", "Social Media"],
-    period: "Jan 2024 – Apr 2025",
-    role: "Co-founder, Frontend",
+    period: "Jan 2024 - Apr 2025",
+    role: "Co-creator, Frontend",
     featured: true,
     imageSrc: "/images/coauthor-dark.png",
     imageAlt: "Coauthor product screenshot",
@@ -82,14 +83,16 @@ export const allWorkProjects: WorkProject[] = [
   {
     name: "LinkedIn Rewind 2024",
     description:
-      "Personalized year-in-review experience for LinkedIn users. Created shareable cards told in users' authentic voice by analyzing their posts.",
-    moreInfo:
-      "A limited-time feature that allowed users to create a personalized year-in-review post and shareable card. It was a viral success, attracting more than 300,000 users.",
+      "A personalized year-in-review for LinkedIn users that attracted 300,000+ users in weeks. Analyzed posting history and generated shareable AI-powered recaps in each user's authentic voice.",
+    moreInfo: [
+      "Delivered a viral feature under tight seasonal timelines—300K+ signups during December 2024.",
+      "Co-built the full UI: personalized stats, AI-generated recap cards, and frictionless social sharing.",
+    ],
     url: "https://rewind.coauthor.studio/",
     tags: ["Consumer", "AI", "Viral"],
-    period: "Dec 2024 – Jan 2025",
+    period: "Dec 2024 - Jan 2025",
     highlight: "300K+ Users",
-    role: "Co-founder, Frontend",
+    role: "Co-creator, Frontend",
     featured: true,
     imageSrc: "/images/rewind.png",
     imageAlt: "LinkedIn Rewind screenshot",
@@ -97,13 +100,17 @@ export const allWorkProjects: WorkProject[] = [
   {
     name: "Hunch",
     description:
-      "AI-first workspace for teams that combines model orchestration, structured templates, and execution primitives to automate complex research, writing, and product workflows.",
-    moreInfo:
-      "Execution primitives include batch runs, web scraping, and embedded code execution. Enables teams to create reusable AI tools and run thousands of tasks in parallel.",
+      "Co-founded Hunch, an AI-first workspace combining model orchestration, a template-driven canvas, and execution primitives to automate research, writing, and product workflows. Led frontend engineering—architected the core canvas, tools, templates, onboarding, and run management.",
+    moreInfo: [
+      "Implemented execution primitives (batch runs, web scraping, embedded code execution, parallel orchestration) to scale single prompts into thousands of automated tasks.",
+      "Designed model orchestration features to route, compare, and combine outputs from multiple LLMs and multimodal models.",
+      "Built a template-driven canvas enabling users to create reusable AI tools and iterate without engineering overhead.",
+      "Led frontend architecture and component systems for a performant, responsive UX across the product.",
+    ],
     url: "https://hunch.tools/",
     tags: ["AI", "Workspace", "Orchestration"],
-    period: "May 2023 – Dec 2024",
-    role: "Co-founder, Frontend",
+    period: "May 2023 - Dec 2024",
+    role: "Co-creator, Frontend",
     featured: true,
     imageSrc: "/images/hunch-canvas.png",
     imageAlt: "Hunch canvas screenshot",
@@ -111,12 +118,15 @@ export const allWorkProjects: WorkProject[] = [
   {
     name: "Neon",
     description:
-      "Collaborative visual analytics canvas. Drag datasets onto a shared canvas, create interactive charts, and link related tables automatically.",
-    moreInfo:
-      "Users can drag datasets (CSV, BigQuery, Snowflake, etc.) onto a shared canvas, create interactive charts, and link related tables automatically. Combines a familiar table/SQL abstraction for power users with an approachable, highly interactive UI.",
+      "Co-built the frontend for Neon, a collaborative visual analytics canvas that helped secure venture capital funding. Users drag datasets (CSV, BigQuery, Snowflake) onto a shared canvas, create interactive charts, and link related tables automatically—no manual joins required.",
+    moreInfo: [
+      "Architected a real-time, highly interactive canvas with drag-and-drop charting, automatic schema inference, and seamless cross-dataset linking.",
+      "Designed UX patterns that surface distributions, time series, and cross-dataset insights while preserving SQL access for power users.",
+      "Built annotation, filtering, and collaborative features enabling teams to explore data together in real time.",
+    ],
     url: "https://www.loom.com/share/f72ed8cfaec841499d97e087dc0bcf74",
-    tags: ["Analytics", "Data Viz", "Collaboration", "SQL"],
-    period: "Aug 2021 – Apr 2023",
+    tags: ["Analytics", "Data Viz", "Collaboration", "Canvas"],
+    period: "Aug 2021 - Apr 2023",
     isVideo: true,
     role: "Co-founder, Frontend",
     featured: false,
