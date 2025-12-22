@@ -54,7 +54,7 @@ export const allWorkProjects: WorkProject[] = [
     ],
     url: "https://overclock.work/",
     tags: ["AI", "Automation", "SaaS", "Agentic"],
-    period: "May 2025 - Oct 2025",
+    period: "Launched: June 2025",
     role: "Co-creator, Frontend",
     featured: true,
     imageSrc: "/images/overclock-website-light.png",
@@ -62,6 +62,7 @@ export const allWorkProjects: WorkProject[] = [
   },
   {
     name: "Coauthor",
+    nameLink: "https://coauthor.studio/",
     description:
       "Co-built Coauthor from inception—an AI writing product that transforms short voice or text inputs into authentic LinkedIn posts. Designed the end-to-end UX, content-generation mechanics, and onboarding flows.",
     moreInfo: [
@@ -74,10 +75,10 @@ export const allWorkProjects: WorkProject[] = [
 
     url: "https://coauthor.studio/",
     tags: ["AI", "Content", "Social Media"],
-    period: "Jan 2024 - Apr 2025",
+    period: "Launched: Feb 2025",
     role: "Co-creator, Frontend",
     featured: true,
-    imageSrc: "/images/coauthor-dark.png",
+    imageSrc: "/images/coauthor-website-light.png",
     imageAlt: "Coauthor product screenshot",
   },
   {
@@ -94,11 +95,12 @@ export const allWorkProjects: WorkProject[] = [
     highlight: "300K+ Users",
     role: "Co-creator, Frontend",
     featured: true,
-    imageSrc: "/images/rewind.png",
+    imageSrc: "/images/rewind-4-3.png",
     imageAlt: "LinkedIn Rewind screenshot",
   },
   {
     name: "Hunch",
+    nameLink: "https://hunch.tools/",
     description:
       "Co-founded Hunch, an AI-first workspace combining model orchestration, a template-driven canvas, and execution primitives to automate research, writing, and product workflows. Led frontend engineering—architected the core canvas, tools, templates, onboarding, and run management.",
     moreInfo: [

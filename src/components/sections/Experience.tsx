@@ -27,22 +27,22 @@ const experiences: ExperienceItem[] = [
     period: "2021 - 2025",
     url: "https://hunch.tools/",
     summary:
-      "Venture-backed AI platform for teams — model orchestration, templates, and batch execution. Led product and engineering; designed the core canvas and parallel execution system.",
+      "Co-founded Hunch, a venture-backed startup that provides AI-powered tools for teams — model orchestration, templates, and batch execution. Led product and engineering; designed the core canvas and parallel execution system.",
     current: false,
   },
   {
     company: "Aruba, a Hewlett Packard Enterprise company",
     role: "Engineering Manager & Frontend Lead",
-    period: "2018 – 2020",
-    url: "https://www.arubanetworks.com/",
+    period: "2018 - 2020",
+    url: "https://www.hpe.com/za/en/networking/user-experience-insight.html",
     summary:
-      "Frontend tech lead & manager for Cape Networks (User Experience Insight at Aruba). Built industry-leading software for networking teams, putting design and ease of use first.",
+      "Frontend tech lead & manager for User Experience Insight at Aruba (previously Cape Networks). Built industry-leading software for networking teams, putting design and ease of use first.",
   },
   {
     company: "Cape Networks",
-    role: "Software Engineer",
-    period: "2016 – 2018",
-    url: "https://www.arubanetworks.com/",
+    role: "Frontend Lead",
+    period: "2016 - 2018",
+    url: "https://www.linkedin.com/company/cape-networks/",
     summary:
       "Network monitoring product — sensors mimic users to test WiFi from their perspective. Built simple dashboards and reports to detect issues instantly and troubleshoot remotely.",
   },
@@ -79,7 +79,7 @@ const Experience = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: index * 0.15, duration: 0.6 }}
-                  className="relative"
+                  className="relative group/experience"
                 >
                   <div
                     role="link"
@@ -94,7 +94,7 @@ const Experience = () => {
                     }}
                     className="group glow-border rounded-xl p-6 outline-none transition-all duration-300 border border-transparent bg-transparent shadow-none cursor-pointer hover:bg-card/80 hover:backdrop-blur-xl hover:border-border/50 hover:shadow-[var(--shadow-md)] focus-visible:ring-2 focus-visible:ring-primary/60"
                   >
-                    <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-2 sm:gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-[80px_1fr] gap-2 sm:gap-6">
                       {/* Dates-as-bullets */}
                       <div className="text-xs font-medium tracking-wider text-muted-foreground/80 pt-1">
                         {exp.period}
@@ -102,20 +102,29 @@ const Experience = () => {
 
                       <div className="min-w-0">
                         <div className="flex items-start justify-between gap-4">
-                          <h3 className="text-lg font-display font-semibold leading-snug">
-                            <span className="text-foreground">{exp.role}</span>{" "}
-                            <span className="text-muted-foreground">·</span>{" "}
-                            <span className="text-foreground">
-                              {exp.company}
-                            </span>
-                            {exp.current ? (
-                              <span className="ml-2 align-middle text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary font-medium">
-                                Current
+                          <div>
+                            <h3 className="text-lg font-display font-semibold leading-snug">
+                              <span className="text-foreground">
+                                {exp.role}
                               </span>
-                            ) : null}
-                          </h3>
-
-                          <ArrowUpRight className="mt-1 w-4 h-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" />
+                              {exp.current ? (
+                                <span className="ml-2 align-middle text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary font-medium">
+                                  Current
+                                </span>
+                              ) : null}
+                            </h3>
+                            <a
+                              href={exp.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              onKeyDown={(e) => e.stopPropagation()}
+                              className="group/link text-sm text-foreground/80 font-medium mt-1 hover:underline group-hover/experience:text-primary transition-colors flex items-center gap-1"
+                            >
+                              {exp.company}
+                              <ArrowUpRight className="w-4 h-4 shrink-0 opacity-0 group-hover/experience:opacity-100 transition-opacity" />
+                            </a>
+                          </div>
                         </div>
 
                         <p className="mt-2 text-base text-muted-foreground leading-relaxed">
@@ -152,7 +161,7 @@ const Experience = () => {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="mt-0 text-left ml-6"
+              className="mt-2 text-left ml-6"
             >
               <Link
                 to="/experience"

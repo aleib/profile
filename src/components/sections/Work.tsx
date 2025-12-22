@@ -69,12 +69,28 @@ const Work = () => {
                   <div className="group glow-border rounded-xl p-6 transition-all duration-300 border border-transparent bg-transparent shadow-none hover:bg-background/50 hover:backdrop-blur-xl hover:border-border/10 hover:shadow-[var(--shadow-md)]">
                     <div className="grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-4 sm:gap-6">
                       <div className="overflow-hidden rounded-sm border border-border/30 bg-secondary/10 h-fit">
-                        <img
-                          src={project.imageSrc}
-                          alt={project.imageAlt}
-                          loading="lazy"
-                          className="w-full aspect-[4/3] object-cover transition-transform duration-300 hover:scale-[1.05]"
-                        />
+                        {project.nameLink ? (
+                          <a
+                            href={project.nameLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <img
+                              src={project.imageSrc}
+                              alt={project.imageAlt}
+                              loading="lazy"
+                              className="w-full aspect-[4/2.7] object-cover transition-transform duration-300 hover:scale-[1.05] cursor-pointer"
+                            />
+                          </a>
+                        ) : (
+                          <img
+                            src={project.imageSrc}
+                            alt={project.imageAlt}
+                            loading="lazy"
+                            className="w-full aspect-[4/2.7] object-cover transition-transform duration-300 hover:scale-[1.05]"
+                          />
+                        )}
                       </div>
 
                       <div className="min-w-0">
@@ -163,7 +179,9 @@ const Work = () => {
                           {!isExpanded && (
                             <span
                               className={cn(
-                                "select-none text-muted-foreground text-sm transition-colors absolute bottom-0 right-0  text-right"
+                                "select-none text-sm transition-colors absolute bottom-1 right-0 text-right",
+                                "pl-24 bg-gradient-to-r from-transparent via-background to-background",
+                                "group-hover:text-foreground text-muted-foreground hover:text-primary/80" // make it look clickable
                               )}
                             >
                               ... see more
