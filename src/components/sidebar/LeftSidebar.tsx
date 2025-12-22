@@ -32,7 +32,7 @@ const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
               Alex Leibhammer
             </h1>
             <p className="mt-3 text-lg sm:text-xl font-display font-medium gradient-text">
-              Senior Frontend Engineer • Tech Lead
+              Software Engineer • Founder
             </p>
           </div>
 

@@ -22,17 +22,18 @@ const About = () => {
           </h2> */}
 
           <div className="space-y-6 text-base sm:text-lg leading-relaxed text-foreground/70 font-normal">
-            <p className="">
+            <p>
               I'm an software engineer and founder passionate about building
-              products that blend thoughtful design and robust engineering.
+              products that blend thoughtful design and practical engineering.
+            </p>
+            <p>
               Recently I've focused on production-grade frontends for data and
               AI-driven products. Over the last five years I've co-founded and
-              delivered multiple startups across visual analytics, model
-              orchestration, workflow automation, and large-scale content
-              systems.
+              delivered multiple venture products across visual analytics, model
+              orchestration, workflow automation, and content systems.
             </p>
 
-            <p className="">
+            <p>
               I combine frontend expertise with product sensibility—owning
               architecture, reliability, performance, and execution. I've
               delivered collaborative data canvases, AI-first workspaces for
@@ -40,7 +41,7 @@ const About = () => {
               users, and agentic workflow systems.
             </p>
 
-            <p className="">
+            <p>
               I'm most effective where UX quality, engineering execution, and
               pragmatic leadership intersect.
             </p>

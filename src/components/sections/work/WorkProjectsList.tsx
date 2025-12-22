@@ -52,10 +52,25 @@ const WorkProjectsList = ({ projects, className }: WorkProjectsListProps) => {
             {project.description}
           </p>
 
-          {project.longDescription ? (
-            <p className="text-muted-foreground/80 text-sm mb-6 leading-relaxed">
-              {project.longDescription}
-            </p>
+          {project.moreInfo ? (
+            Array.isArray(project.moreInfo) ? (
+              <div className="text-muted-foreground/80 text-sm mb-6 leading-relaxed">
+                <p className="whitespace-pre-wrap">{project.moreInfo[0]}</p>
+                {project.moreInfo.length > 1 ? (
+                  <ul className="mt-3 list-disc pl-5 space-y-1">
+                    {project.moreInfo.slice(1).map((item) => (
+                      <li key={item} className="marker:text-foreground/30">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
+            ) : (
+              <p className="text-muted-foreground/80 text-sm mb-6 leading-relaxed whitespace-pre-wrap">
+                {project.moreInfo}
+              </p>
+            )
           ) : null}
 
           <Button variant="outline" size="sm" asChild>

@@ -153,6 +153,8 @@
     border-radius: inherit;
     padding: 1px;
     background: var(--gradient-primary);
+    /* Visual-only overlay; never intercept clicks meant for card contents (links, buttons). */
+    pointer-events: none;
     -webkit-mask: linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);

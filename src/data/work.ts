@@ -1,7 +1,13 @@
 export type WorkProject = {
   name: string;
+  nameLink?: string;
   description: string;
-  longDescription?: string;
+  /**
+   * Expanded description content.
+   * - Use a string for simple prose.
+   * - Use an array for an intro line + bullet items (renders as a list in React).
+   */
+  moreInfo?: string | readonly string[];
   url: string;
   tags: string[];
   period: string;
@@ -38,10 +44,19 @@ const isFeaturedWorkProject = (
 export const allWorkProjects: WorkProject[] = [
   {
     name: "Overclock",
+    nameLink: "https://overclock.work/",
     description:
-      "Agentic workflows for SaaS teams. Decomposes natural-language requests into discrete steps, executes with connected integrations, and continuously improves via feedback.",
-    longDescription:
-      "Overclock is positioned for solo marketers, small/oversubscribed SaaS teams, and agencies. Typical use cases include competitor tracking, pre-call research briefs, social monitoring and response, churn/feedback synthesis, and automated changelogs or monthly performance analyses.",
+      "Overclock is a no-code AI agent platform that automates workflows in the browser. I led the frontend engineering, delivering the customer-facing web app.",
+    moreInfo: [
+      "Overclock is a no-code AI agent platform that automates workflows in the browser. I led the frontend engineering, delivering the customer-facing web app.",
+      "Converts plain-English instructions into multi-step automated workflows that run on schedules and report back with logs, drafts, and results.",
+      "Targets busy marketers, SaaS teams, and agencies needing research briefs, social listening, content drafts, monthly reporting, and operational automation.",
+      "Runs where teams already work (Slack + web app), with review gates and transparent execution logs to prevent bad outputs.",
+      "Integrates with major tools (Google Workspace, Slack, GitHub, Gmail, Notion, Reddit, X/Twitter, Linear, and others).",
+      "Invite-only beta with credit-based pricing tiers.",
+      "My work: end-to-end frontend architecture, UX flows, reusable component library, responsive UI, onboarding and billing screens, and the interface for connecting and managing integrations.",
+      "Collaborated across product and backend to shape agent observability, approvals, and reliability improvements during beta.",
+    ],
     url: "https://overclock.work/",
     tags: ["AI", "Automation", "SaaS", "Agentic"],
     period: "May 2025 - Oct 2025",
@@ -54,7 +69,7 @@ export const allWorkProjects: WorkProject[] = [
     name: "Coauthor",
     description:
       "Voice-to-audience engine that extrapolates your linguistic fingerprint from voice notes or text and drafts social content reflecting genuine expertise.",
-    longDescription:
+    moreInfo:
       "The mission is direct distribution — helping builders cut through generic AI noise, grow reach across platforms, and communicate without surrendering authenticity or hours of weekly writing.",
     url: "https://coauthor.studio/",
     tags: ["AI", "Content", "Social Media"],
@@ -68,7 +83,7 @@ export const allWorkProjects: WorkProject[] = [
     name: "LinkedIn Rewind 2024",
     description:
       "Personalized year-in-review experience for LinkedIn users. Created shareable cards told in users' authentic voice by analyzing their posts.",
-    longDescription:
+    moreInfo:
       "A limited-time feature that allowed users to create a personalized year-in-review post and shareable card. It was a viral success, attracting more than 300,000 users.",
     url: "https://rewind.coauthor.studio/",
     tags: ["Consumer", "AI", "Viral"],
@@ -83,7 +98,7 @@ export const allWorkProjects: WorkProject[] = [
     name: "Hunch",
     description:
       "AI-first workspace for teams that combines model orchestration, structured templates, and execution primitives to automate complex research, writing, and product workflows.",
-    longDescription:
+    moreInfo:
       "Execution primitives include batch runs, web scraping, and embedded code execution. Enables teams to create reusable AI tools and run thousands of tasks in parallel.",
     url: "https://hunch.tools/",
     tags: ["AI", "Workspace", "Orchestration"],
@@ -97,7 +112,7 @@ export const allWorkProjects: WorkProject[] = [
     name: "Neon",
     description:
       "Collaborative visual analytics canvas. Drag datasets onto a shared canvas, create interactive charts, and link related tables automatically.",
-    longDescription:
+    moreInfo:
       "Users can drag datasets (CSV, BigQuery, Snowflake, etc.) onto a shared canvas, create interactive charts, and link related tables automatically. Combines a familiar table/SQL abstraction for power users with an approachable, highly interactive UI.",
     url: "https://www.loom.com/share/f72ed8cfaec841499d97e087dc0bcf74",
     tags: ["Analytics", "Data Viz", "Collaboration", "SQL"],

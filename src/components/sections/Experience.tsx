@@ -61,23 +61,23 @@ const Experience = () => {
   }, []);
 
   return (
-    <section id="experience" className="py-24 relative -mx-10">
+    <section id="experience" className="pb-24 relative -mx-10">
       <div className="section-container">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 0 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="section-header">Experience</h2>
+          {/* <h2 className="section-header">Experience</h2> */}
 
           <div className="relative max-w-[51rem] mx-auto">
             <div className="space-y-4">
               {experiences.map((exp, index) => (
                 <motion.div
                   key={exp.company}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: index * 0.15, duration: 0.6 }}
                   className="relative"
                 >
@@ -152,11 +152,11 @@ const Experience = () => {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="mt-10 text-left ml-6"
+              className="mt-0 text-left ml-6"
             >
               <Link
                 to="/experience"
-                className="inline-flex items-center gap-2 text-sm font-normal text-muted-foreground hover:text-foreground transition-colors group"
+                className="inline-flex items-center gap-1.5 text-base font-semibold texts-foreground hover:text-foreground transition-colors group"
               >
                 View full career history
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
