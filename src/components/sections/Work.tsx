@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, getResponsiveSrcset } from "@/lib/utils";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useCallback, useId, useRef, useState } from "react";
@@ -78,14 +78,22 @@ const Work = () => {
                           >
                             <img
                               src={project.imageSrc}
+                              srcSet={getResponsiveSrcset(project.imageSrc, {
+                                hasThumbnail: project.hasThumbnail,
+                              })}
+                              sizes="(max-width: 640px) 100vw, 200px"
                               alt={project.imageAlt}
                               loading="lazy"
-                              className="w-full aspect-[4/2.7] object-cover transition-transform duration-300 hover:scale-[1.05] cursor-pointer"
+                              className="w-full aspect-[4/2.6] object-cover transition-transform duration-300 hover:scale-[1.05] cursor-pointer"
                             />
                           </a>
                         ) : (
                           <img
                             src={project.imageSrc}
+                            srcSet={getResponsiveSrcset(project.imageSrc, {
+                              hasThumbnail: project.hasThumbnail,
+                            })}
+                            sizes="(max-width: 640px) 100vw, 200px"
                             alt={project.imageAlt}
                             loading="lazy"
                             className="w-full aspect-[4/2.7] object-cover transition-transform duration-300 hover:scale-[1.05]"

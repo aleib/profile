@@ -20,6 +20,12 @@ export type WorkProject = {
   featured: boolean;
   imageSrc?: string;
   imageAlt?: string;
+  /**
+   * Whether a thumbnail version exists for this image.
+   * Thumbnails should be named with "-thumb" suffix before the extension.
+   * Example: "/images/hunch-canvas.png" -> "/images/hunch-canvas-thumb.png"
+   */
+  hasThumbnail?: boolean;
 };
 
 export type FeaturedWorkProject = WorkProject & {
@@ -59,6 +65,7 @@ export const allWorkProjects: WorkProject[] = [
     featured: true,
     imageSrc: "/images/overclock-website-light.png",
     imageAlt: "Overclock product screenshot",
+    hasThumbnail: true,
   },
   {
     name: "Coauthor",
@@ -80,6 +87,7 @@ export const allWorkProjects: WorkProject[] = [
     featured: true,
     imageSrc: "/images/coauthor-website-light.png",
     imageAlt: "Coauthor product screenshot",
+    hasThumbnail: true,
   },
   {
     name: "LinkedIn Rewind 2024",
@@ -97,6 +105,7 @@ export const allWorkProjects: WorkProject[] = [
     featured: true,
     imageSrc: "/images/rewind-4-3.png",
     imageAlt: "LinkedIn Rewind screenshot",
+    hasThumbnail: true,
   },
   {
     name: "Hunch",
@@ -116,6 +125,7 @@ export const allWorkProjects: WorkProject[] = [
     featured: true,
     imageSrc: "/images/hunch-canvas.png",
     imageAlt: "Hunch canvas screenshot",
+    hasThumbnail: true,
   },
   {
     name: "Neon",
@@ -134,6 +144,7 @@ export const allWorkProjects: WorkProject[] = [
     featured: false,
     imageSrc: "/images/neon-canvas.jpg",
     imageAlt: "Neon canvas screenshot",
+    hasThumbnail: true,
   },
 ];
 
