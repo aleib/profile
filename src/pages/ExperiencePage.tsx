@@ -14,7 +14,6 @@ type Experience = {
   company: string;
   role: string;
   period: string;
-  location?: string;
   url?: string;
   description: string[];
   technologies?: string[];
@@ -25,7 +24,6 @@ const allExperiences: Experience[] = [
     company: "Hunch",
     role: "Co-founder",
     period: "Aug 2021 – Present",
-    location: "South Africa",
     url: "https://hunch.tools/",
     description: [
       "Venture-backed AI platform for teams",
@@ -37,7 +35,6 @@ const allExperiences: Experience[] = [
     company: "Aruba, a Hewlett Packard Enterprise company",
     role: "Engineering Manager & Frontend Lead",
     period: "May 2018 – Oct 2020",
-    location: "Cape Town",
     url: "https://www.arubanetworks.com/",
     description: [
       "Frontend tech lead & manager for Cape Networks (User Experience Insight at Aruba)",
@@ -47,9 +44,8 @@ const allExperiences: Experience[] = [
   },
   {
     company: "Cape Networks",
-    role: "Software Engineer",
+    role: "Frontend Lead",
     period: "Mar 2016 – Apr 2018",
-    location: "Cape Town",
     url: "https://www.arubanetworks.com/",
     description: [
       "Cape is now a Hewlett Packard Enterprise company (Aruba)",
@@ -62,7 +58,6 @@ const allExperiences: Experience[] = [
     company: "Freelance",
     role: "Developer & Consultant",
     period: "Apr 2015 – Feb 2016",
-    location: "Cape Town",
     description: [
       "Web applications for Z* Mineral Resource Consultants and The De Beers Group",
       "Front-end web apps for hotel & time-share rentals",
@@ -74,7 +69,6 @@ const allExperiences: Experience[] = [
     company: "Merlin",
     role: "Lead Developer",
     period: "Jul 2012 – Mar 2015",
-    location: "Cape Town",
     description: [
       "Built software for the hotel and time-share industry",
       "Team lead, software architecture design, and mentorship",
@@ -221,11 +215,6 @@ const ExperiencePage = () => {
                           <p className="text-sm text-muted-foreground">
                             {exp.role}
                           </p>
-                          {exp.location ? (
-                            <p className="text-xs text-muted-foreground/70 mt-1">
-                              {exp.location}
-                            </p>
-                          ) : null}
                         </div>
                       </div>
                       <div className="flex items-center gap-3 shrink-0">
@@ -246,7 +235,7 @@ const ExperiencePage = () => {
                       </div>
                     </div>
 
-                    <ul className="space-y-1.5 mb-3">
+                    <ul className="space-y-1.5 mb-3 ml-12">
                       {exp.description.map((item, i) => (
                         <li
                           key={i}

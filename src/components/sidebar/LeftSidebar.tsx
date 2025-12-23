@@ -1,7 +1,6 @@
 import { Download, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import { useThemeMode } from "@/hooks/useThemeMode";
 import { default as SidebarFooter } from "./SidebarFooter";
 
 type NavSection = {
@@ -22,8 +21,6 @@ type LeftSidebarProps = {
  * - Mobile: behave like a sticky “header panel” so navigation is always available
  */
 const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
-  const { mode, setThemeMode } = useThemeMode();
-
   return (
     <aside className="sticky top-0 self-start z-20 bg-background/80 backdrop-blur-xl border-b border-border/50 pt-6 pb-6 lg:z-auto lg:bg-transparent lg:backdrop-blur-0 lg:border-b-0 lg:pt-0 lg:pb-0 lg:top-0 lg:h-screen lg:w-[22rem] lg:flex lg:flex-col lg:justify-between lg:py-20">
       <div>
@@ -38,8 +35,8 @@ const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
           </div>
 
           <p className="text-muted-foreground leading-relaxed max-w-prose">
-            I build data and AI-driven products — visual analytics,
-            orchestration, workflow automation, and consumer-scale launches.
+            Passionate about building products that blend thoughtful design and
+            practical engineering.
           </p>
 
           <div className="flex flex-wrap gap-3">
@@ -51,7 +48,7 @@ const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
               Get in touch
             </Link>
             <a
-              href="/cv.pdf"
+              href="/alex-leibhammer-cv.pdf"
               download
               className="inline-flex items-center gap-2 rounded-lg bg-secondary/50 text-foreground px-3 py-2 text-sm font-medium hover:bg-secondary transition-colors"
             >
