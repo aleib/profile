@@ -10,6 +10,7 @@
     <!-- Favicon -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- SEO Meta Tags -->
     <title>
@@ -24,9 +25,11 @@
       content="Senior Frontend Engineer, Tech Lead, React, TypeScript, AI, Cape Town, Frontend Architecture, Data Visualization"
     />
     <meta name="author" content="Alex Leibhammer" />
+    <meta name="robots" content="index, follow" />
 
     <!-- Open Graph / Social -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Alex Leibhammer" />
     <meta
       property="og:title"
       content="Alex Leibhammer | Senior Frontend Engineer & Tech Lead"
@@ -35,7 +38,15 @@
       property="og:description"
       content="Building data and AI-driven products — visual analytics, orchestration, workflow automation, and consumer-scale launches."
     />
-    <meta property="og:url" content="https://alexleibhammer.com" />
+    <meta property="og:url" content="https://aleib.com" />
+    <meta property="og:image" content="https://aleib.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Alex Leibhammer - Senior Frontend Engineer & Tech Lead"
+    />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -47,9 +58,38 @@
       name="twitter:description"
       content="Building data and AI-driven products — visual analytics, orchestration, workflow automation, and consumer-scale launches."
     />
+    <meta name="twitter:image" content="https://aleib.com/og-image.png" />
+    <meta
+      name="twitter:image:alt"
+      content="Alex Leibhammer - Senior Frontend Engineer & Tech Lead"
+    />
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://alexleibhammer.com" />
+    <link rel="canonical" href="https://aleib.com" />
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Alex Leibhammer",
+        "url": "https://aleib.com",
+        "jobTitle": "Senior Frontend Engineer & Tech Lead",
+        "description": "Building data and AI-driven products — visual analytics, orchestration, workflow automation, and consumer-scale launches.",
+        "knowsAbout": [
+          "React",
+          "TypeScript",
+          "Frontend Architecture",
+          "AI Products",
+          "Data Visualization",
+          "Workflow Automation"
+        ],
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "University of Cape Town"
+        }
+      }
+    </script>
 
     <!-- Preconnect to fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

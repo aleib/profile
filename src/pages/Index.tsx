@@ -3,6 +3,7 @@ import Contact from "@/components/sections/Contact";
 import Experience from "@/components/sections/Experience";
 import Skills from "@/components/sections/Skills";
 import Work from "@/components/sections/Work";
+import { SEO } from "@/components/SEO";
 import LeftSidebar from "@/components/sidebar/LeftSidebar";
 import { usePointerGlow } from "@/hooks/usePointerGlow";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
@@ -42,46 +43,61 @@ const Index = () => {
     }
   }, [location.hash]);
 
+  // Handle SPA redirect from 404.html
+  useEffect(() => {
+    const redirect = sessionStorage.getItem("redirect");
+    if (redirect) {
+      sessionStorage.removeItem("redirect");
+      // Only navigate if it's not the home page
+      if (redirect !== "/" && redirect !== "") {
+        window.history.replaceState(null, "", redirect);
+      }
+    }
+  }, []);
+
   return (
-    <div
-      ref={containerRef}
-      className="min-h-screen dark:bg-slate-950 light:bg-slate-50 relative"
-    >
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {/* <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" /> */}
-        <div
-          aria-hidden="true"
-          className={cn(
-            "absolute inset-0 transition-opacity duration-300",
-            isGlowActive ? "opacity-100" : "opacity-0"
-          )}
-          style={glowStyle}
-        />
-        <div className="absolute top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
-        <div
-          className="absolute bottom-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float"
-          style={{ animationDelay: "3s" }}
-        />
-      </div>
+    <>
+      <SEO path="/" />
+      <div
+        ref={containerRef}
+        className="min-h-screen dark:bg-slate-950 light:bg-slate-50 relative"
+      >
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          {/* <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" /> */}
+          <div
+            aria-hidden="true"
+            className={cn(
+              "absolute inset-0 transition-opacity duration-300",
+              isGlowActive ? "opacity-100" : "opacity-0"
+            )}
+            style={glowStyle}
+          />
+          <div className="absolute top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
+          <div
+            className="absolute bottom-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float"
+            style={{ animationDelay: "3s" }}
+          />
+        </div>
 
-      <div className="section-container relative z-10 lg:flex lg:gap-24">
-        {/* Left sidebar */}
-        <LeftSidebar
-          navSections={navSections}
-          activeSectionId={activeSectionId}
-        />
+        <div className="section-container relative z-10 lg:flex lg:gap-24">
+          {/* Left sidebar */}
+          <LeftSidebar
+            navSections={navSections}
+            activeSectionId={activeSectionId}
+          />
 
-        {/* Right content */}
-        <main className="flex-1 py-16 lg:py-24">
-          <About />
-          <Work />
-          {/* <Metrics /> */}
-          <Experience />
-          <Skills />
-          <Contact />
-        </main>
+          {/* Right content */}
+          <main className="flex-1 py-16 lg:py-24">
+            <About />
+            <Work />
+            {/* <Metrics /> */}
+            <Experience />
+            <Skills />
+            <Contact />
+          </main>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
