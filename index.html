@@ -1,74 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Apply theme (light/dark) before React mounts -->
-    <script src="/theme-init.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Favicon -->
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script>
+    /**
+     * Apply theme before React mounts to avoid a light↔dark flash.
+     * Dark is the default (CSS vars on :root); light mode is activated via `.light` on <html>.
+     */
+    (() => {
+      try {
+        const stored = localStorage.getItem("theme-mode");
+        const prefersLight =
+          window.matchMedia?.("(prefers-color-scheme: light)").matches ??
+          false;
 
-    <!-- SEO Meta Tags -->
-    <title>
-      Alex Leibhammer | Senior Frontend Engineer & Tech Lead | React/TypeScript
-    </title>
-    <meta
-      name="description"
-      content="Senior Frontend Engineer and Tech Lead specializing in React, TypeScript, and AI-driven products. Building data visualization, workflow automation, and consumer-scale applications."
-    />
-    <meta
-      name="keywords"
-      content="Senior Frontend Engineer, Tech Lead, React, TypeScript, AI, Cape Town, Frontend Architecture, Data Visualization"
-    />
-    <meta name="author" content="Alex Leibhammer" />
-    <meta name="robots" content="index, follow" />
+        const resolved =
+          stored === "light" || stored === "dark"
+            ? stored
+            : prefersLight
+              ? "light"
+              : "dark";
 
-    <!-- Open Graph / Social -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Alex Leibhammer" />
-    <meta
-      property="og:title"
-      content="Alex Leibhammer | Senior Frontend Engineer & Tech Lead"
-    />
-    <meta
-      property="og:description"
-      content="Building data and AI-driven products — visual analytics, orchestration, workflow automation, and consumer-scale launches."
-    />
-    <meta property="og:url" content="https://aleib.com" />
-    <meta property="og:image" content="https://aleib.com/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="Alex Leibhammer - Senior Frontend Engineer & Tech Lead"
-    />
-    <meta property="og:locale" content="en_US" />
+        document.documentElement.classList.toggle(
+          "light",
+          resolved === "light"
+        );
+        document.documentElement.style.colorScheme = resolved;
+      } catch {
+        // Intentionally ignore failures (e.g. storage disabled) and fall back to default styles.
+      }
+    })();
+  </script>
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Alex Leibhammer | Senior Frontend Engineer & Tech Lead"
-    />
-    <meta
-      name="twitter:description"
-      content="Building data and AI-driven products — visual analytics, orchestration, workflow automation, and consumer-scale launches."
-    />
-    <meta name="twitter:image" content="https://aleib.com/og-image.png" />
-    <meta
-      name="twitter:image:alt"
-      content="Alex Leibhammer - Senior Frontend Engineer & Tech Lead"
-    />
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Canonical -->
-    <link rel="canonical" href="https://aleib.com" />
+  <!-- SEO Meta Tags -->
+  <title>
+    Alex Leibhammer | Senior Frontend Engineer & Tech Lead | React/TypeScript
+  </title>
+  <meta name="description"
+    content="Senior Frontend Engineer and Tech Lead specializing in React, TypeScript, and AI-driven products. Building data visualization, workflow automation, and consumer-scale applications." />
+  <meta name="keywords"
+    content="Senior Frontend Engineer, Tech Lead, React, TypeScript, AI, Cape Town, Frontend Architecture, Data Visualization" />
+  <meta name="author" content="Alex Leibhammer" />
+  <meta name="robots" content="index, follow" />
 
-    <!-- Structured Data / JSON-LD -->
-    <script type="application/ld+json">
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Alex Leibhammer" />
+  <meta property="og:title" content="Alex Leibhammer | Senior Frontend Engineer & Tech Lead" />
+  <meta property="og:description"
+    content="Building data and AI-driven products — visual analytics, orchestration, workflow automation, and consumer-scale launches." />
+  <meta property="og:url" content="https://aleib.com" />
+  <meta property="og:image" content="https://aleib.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Alex Leibhammer - Senior Frontend Engineer & Tech Lead" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Alex Leibhammer | Senior Frontend Engineer & Tech Lead" />
+  <meta name="twitter:description"
+    content="Building data and AI-driven products — visual analytics, orchestration, workflow automation, and consumer-scale launches." />
+  <meta name="twitter:image" content="https://aleib.com/og-image.png" />
+  <meta name="twitter:image:alt" content="Alex Leibhammer - Senior Frontend Engineer & Tech Lead" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://aleib.com" />
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
@@ -91,17 +99,16 @@
       }
     </script>
 
-    <!-- Preconnect to fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=optional"
-    />
-  </head>
+  <!-- Preconnect to fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=optional" />
+</head>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
