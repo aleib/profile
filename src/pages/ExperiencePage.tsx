@@ -2,7 +2,19 @@ import { SEO } from "@/components/SEO";
 import LeftSidebar from "@/components/sidebar/LeftSidebar";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { motion } from "framer-motion";
-import { ArrowLeft, Briefcase, ExternalLink } from "lucide-react";
+import {
+  ArrowLeft,
+  BrainCog,
+  Briefcase,
+  CircleDollarSign,
+  Database,
+  ExternalLink,
+  Gem,
+  GraduationCap,
+  LucideIcon,
+  Wand2,
+  Wifi,
+} from "lucide-react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -18,6 +30,7 @@ type Experience = {
   url?: string;
   description: string[];
   technologies?: string[];
+  icon?: LucideIcon;
 };
 
 const allExperiences: Experience[] = [
@@ -26,6 +39,7 @@ const allExperiences: Experience[] = [
     role: "Co-founder",
     period: "Aug 2021 – Present",
     url: "https://hunch.tools/",
+    icon: BrainCog,
     description: [
       "Venture-backed AI platform for teams",
       "Model orchestration, structured templates, and execution primitives (batch runs, web scraping, code execution)",
@@ -37,6 +51,7 @@ const allExperiences: Experience[] = [
     role: "Engineering Manager & Frontend Lead",
     period: "May 2018 – Oct 2020",
     url: "https://www.arubanetworks.com/",
+    icon: Wifi,
     description: [
       "Frontend tech lead & manager for Cape Networks (User Experience Insight at Aruba)",
       "Built industry-leading software for networking teams to manage users' connected experience",
@@ -48,6 +63,7 @@ const allExperiences: Experience[] = [
     role: "Frontend Lead",
     period: "Mar 2016 – Apr 2018",
     url: "https://www.arubanetworks.com/",
+    icon: Wifi,
     description: [
       "Cape is now a Hewlett Packard Enterprise company (Aruba)",
       "Built the simplest way to monitor and improve WiFi networks",
@@ -70,6 +86,7 @@ const allExperiences: Experience[] = [
     company: "Merlin",
     role: "Lead Developer",
     period: "Jul 2012 – Mar 2015",
+    icon: Wand2,
     description: [
       "Built software for the hotel and time-share industry",
       "Team lead, software architecture design, and mentorship",
@@ -89,6 +106,7 @@ const allExperiences: Experience[] = [
     company: "Saratoga Software",
     role: "Software Developer",
     period: "Sep 2010 – Jun 2012",
+    icon: Database,
     description: [
       "Projects for the financial sector — web applications and database systems",
       "R&D team prototyping new technologies in the BI space",
@@ -100,18 +118,21 @@ const allExperiences: Experience[] = [
     company: "IHC Marine and Mineral",
     role: "Engineering Intern",
     period: "2007",
+    icon: Gem,
     description: ["Mechatronics degree vacation work"],
   },
   {
     company: "Abbotts College",
     role: "Maths & Science Tutor",
     period: "2005 – 2006",
+    icon: GraduationCap,
     description: ["Tutored maths and science for students in grade 10–12"],
   },
   {
     company: "Insinger de Beaufort (BNP Paribas Wealth Management)",
     role: "Research Assistant",
     period: "Apr 2004 – Nov 2004",
+    icon: CircleDollarSign,
     description: [
       "Securities research",
       "Programming & financial data capture systems",
@@ -142,7 +163,7 @@ const ExperiencePage = () => {
         description="15+ years of building software — from network monitoring and hospitality systems to AI-powered products and consumer-scale launches."
         path="/experience"
       />
-      <div className="min-h-screen bg-background relative">
+      <div className="min-h-screen bg-background relative mx-auto px-6 lg:px-8">
         {/* Ambient background */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
@@ -195,7 +216,7 @@ const ExperiencePage = () => {
 
             {/* Timeline */}
             <div className="relative max-w-4xl">
-              <div className="absolute left-0 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-primary/20 to-transparent" />
+              <div className="absolute left-0 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 to-primary/10" />
 
               <div className="space-y-6">
                 {allExperiences.map((exp, index) => (
@@ -209,11 +230,15 @@ const ExperiencePage = () => {
                     {/* Timeline dot */}
                     <div className="absolute left-0 sm:left-8 -translate-x-1/2 w-3 h-3 rounded-full border-2 bg-background border-primary/50" />
 
-                    <div className="glass-card rounded-xl p-6 hover:border-primary/30 transition-colors">
+                    <div className="lg:glass-card lg:rounded-xl lg:px-6 py-6 hover:border-primary/30 transition-colors">
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-                        <div className="flex items-start gap-3">
+                        <div className="flex items-start gap-3 -mt-8 lg:mt-0">
                           <div className="p-2 rounded-lg bg-primary/10 mt-0.5">
-                            <Briefcase className="w-5 h-5 text-primary" />
+                            {exp.icon ? (
+                              <exp.icon className="w-5 h-5 text-primary" />
+                            ) : (
+                              <Briefcase className="w-5 h-5 text-primary" />
+                            )}
                           </div>
                           <div>
                             <h2 className="text-xl font-display font-semibold flex items-center gap-2 flex-wrap">
@@ -242,7 +267,7 @@ const ExperiencePage = () => {
                         </div>
                       </div>
 
-                      <ul className="space-y-1.5 mb-3 ml-12">
+                      <ul className="space-y-1.5 mb-3 lg:ml-12 ml-2">
                         {exp.description.map((item, i) => (
                           <li
                             key={i}
@@ -298,6 +323,22 @@ const ExperiencePage = () => {
               </div>
             </motion.div>
           </main>
+
+          {/* Back link */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            className="block lg:hidden"
+          >
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group mb-8"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              Back to home
+            </Link>
+          </motion.div>
         </div>
       </div>
     </>

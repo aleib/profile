@@ -25,7 +25,7 @@ const WorkProjectsList = ({ projects, className }: WorkProjectsListProps) => {
             transition={{ delay: index * 0.1, duration: 0.5 }}
             className="relative"
           >
-            <div className="group glow-border rounded-xl p-6 transition-all duration-300 border border-transparent bg-transparent shadow-none hover:bg-background/50 hover:backdrop-blur-xl hover:border-border/10 hover:shadow-[var(--shadow-md)]">
+            <div className="group glow-border rounded-xl lg:p-6 transition-all duration-300 border border-transparent bg-transparent shadow-none hover:bg-background/50 hover:backdrop-blur-xl hover:border-border/10 hover:shadow-[var(--shadow-md)]">
               <div
                 className={cn(
                   "grid grid-cols-1 gap-4",

@@ -32,7 +32,7 @@ const WorkPage = () => {
           />
         </div>
 
-        <div className="section-container relative z-10 lg:flex lg:gap-24">
+        <div className="section-container relative z-10 lg:flex lg:gap-24 max-w-screen-2xl mx-auto px-6 lg:px-8">
           <LeftSidebar navSections={navSections} activeSectionId="work" />
 
           <main id="work" className="flex-1 py-16 lg:py-24">
@@ -71,6 +71,22 @@ const WorkPage = () => {
             {/* Projects grid */}
             <WorkProjectsList projects={allWorkProjects} className="max-w-4xl" />
           </main>
+
+          {/* Back link */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            className="block lg:hidden"
+          >
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group mb-8"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              Back to home
+            </Link>
+          </motion.div>
         </div>
       </div>
     </>
