@@ -7,71 +7,84 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const imagesDir = path.join(__dirname, '../public/images');
-const THUMBNAIL_WIDTH = 400; // 2x for retina displays (200px * 2)
-const THUMBNAIL_QUALITY = 85;
+
+// Image size variants
+const VARIANTS = {
+  thumb: {
+    width: 400,    // 2x for retina displays (200px * 2) - desktop
+    suffix: '-thumb',
+    quality: 85,
+  },
+  mobile: {
+    width: 800,    // 2x for retina displays (~340px * 2) - mobile
+    suffix: '-mobile',
+    quality: 85,
+  },
+};
 
 /**
- * Generates thumbnail path from original image path.
- * Example: "/images/hunch-canvas.png" -> "/images/hunch-canvas-thumb.png"
+ * Generates variant path from original image path.
+ * Example: "/images/hunch-canvas.png" with suffix "-thumb" -> "/images/hunch-canvas-thumb.png"
  */
-function getThumbnailPath(originalPath) {
+function getVariantPath(originalPath, suffix) {
   const extIndex = originalPath.lastIndexOf('.');
   if (extIndex <= 0) {
-    return `${originalPath}-thumb`;
+    return `${originalPath}${suffix}`;
   }
-  return `${originalPath.slice(0, extIndex)}-thumb${originalPath.slice(extIndex)}`;
+  return `${originalPath.slice(0, extIndex)}${suffix}${originalPath.slice(extIndex)}`;
 }
 
 /**
- * Checks if a thumbnail already exists for the given image.
+ * Checks if a variant already exists for the given image.
  */
-function thumbnailExists(imagePath) {
-  const thumbnailPath = getThumbnailPath(imagePath);
-  return fs.existsSync(path.join(imagesDir, thumbnailPath));
+function variantExists(imagePath, suffix) {
+  const variantPath = getVariantPath(imagePath, suffix);
+  return fs.existsSync(path.join(imagesDir, variantPath));
 }
 
 /**
- * Generates a thumbnail for an image file.
+ * Generates a variant (thumbnail or mobile) for an image file.
  */
-async function generateThumbnail(imageFile) {
+async function generateVariant(imageFile, variantName) {
+  const variant = VARIANTS[variantName];
   const imagePath = path.join(imagesDir, imageFile);
-  const thumbnailPath = path.join(imagesDir, getThumbnailPath(imageFile));
+  const outputPath = path.join(imagesDir, getVariantPath(imageFile, variant.suffix));
 
   try {
     // Get image metadata to preserve aspect ratio and format
     const metadata = await sharp(imagePath).metadata();
-    
+
     // Calculate height to maintain aspect ratio
     const aspectRatio = metadata.height / metadata.width;
-    const thumbnailHeight = Math.round(THUMBNAIL_WIDTH * aspectRatio);
+    const targetHeight = Math.round(variant.width * aspectRatio);
 
     // Create sharp instance with resize
-    let pipeline = sharp(imagePath).resize(THUMBNAIL_WIDTH, thumbnailHeight, {
+    let pipeline = sharp(imagePath).resize(variant.width, targetHeight, {
       fit: 'inside',
-      withoutEnlargement: true, // Don't enlarge if image is smaller than thumbnail size
+      withoutEnlargement: true, // Don't enlarge if image is smaller than target size
     });
 
     // Apply format-specific optimizations based on original format
     const format = metadata.format;
     if (format === 'jpeg' || format === 'jpg') {
-      pipeline = pipeline.jpeg({ quality: THUMBNAIL_QUALITY, mozjpeg: true });
+      pipeline = pipeline.jpeg({ quality: variant.quality, mozjpeg: true });
     } else if (format === 'png') {
-      pipeline = pipeline.png({ quality: THUMBNAIL_QUALITY, compressionLevel: 9 });
+      pipeline = pipeline.png({ quality: variant.quality, compressionLevel: 9 });
     } else if (format === 'webp') {
-      pipeline = pipeline.webp({ quality: THUMBNAIL_QUALITY });
+      pipeline = pipeline.webp({ quality: variant.quality });
     }
     // For other formats, sharp will preserve the format automatically
 
-    await pipeline.toFile(thumbnailPath);
+    await pipeline.toFile(outputPath);
 
     const stats = fs.statSync(imagePath);
-    const thumbStats = fs.statSync(thumbnailPath);
-    const savings = ((1 - thumbStats.size / stats.size) * 100).toFixed(1);
+    const outputStats = fs.statSync(outputPath);
+    const savings = ((1 - outputStats.size / stats.size) * 100).toFixed(1);
 
-    console.log(`✓ ${imageFile} → ${path.basename(thumbnailPath)} (${savings}% smaller)`);
+    console.log(`✓ ${imageFile} → ${path.basename(outputPath)} (${savings}% smaller)`);
     return { success: true, savings };
   } catch (error) {
-    console.error(`✗ Error processing ${imageFile}:`, error.message);
+    console.error(`✗ Error processing ${imageFile} [${variantName}]:`, error.message);
     return { success: false, error: error.message };
   }
 }
@@ -87,7 +100,7 @@ function getImageFiles() {
 
   const files = fs.readdirSync(imagesDir);
   const imageExtensions = ['.png', '.jpg', '.jpeg', '.webp'];
-  
+
   return files.filter((file) => {
     const ext = path.extname(file).toLowerCase();
     return imageExtensions.includes(ext) && !file.includes('-thumb');
@@ -95,11 +108,15 @@ function getImageFiles() {
 }
 
 async function main() {
-  console.log('Generating thumbnails...\n');
-  console.log(`Target width: ${THUMBNAIL_WIDTH}px (for 200px display at 2x)\n`);
+  console.log('Generating image variants...\n');
+  console.log('Variants:');
+  for (const [name, config] of Object.entries(VARIANTS)) {
+    console.log(`  • ${name}: ${config.width}px (suffix: ${config.suffix})`);
+  }
+  console.log();
 
   const imageFiles = getImageFiles();
-  
+
   if (imageFiles.length === 0) {
     console.log('No images found to process.');
     return;
@@ -112,17 +129,19 @@ async function main() {
   let errorCount = 0;
 
   for (const imageFile of imageFiles) {
-    if (thumbnailExists(imageFile)) {
-      console.log(`⊘ Skipping ${imageFile} (thumbnail already exists)`);
-      skipCount++;
-      continue;
-    }
+    for (const [variantName, variant] of Object.entries(VARIANTS)) {
+      if (variantExists(imageFile, variant.suffix)) {
+        console.log(`⊘ Skipping ${imageFile} [${variantName}] (already exists)`);
+        skipCount++;
+        continue;
+      }
 
-    const result = await generateThumbnail(imageFile);
-    if (result.success) {
-      successCount++;
-    } else {
-      errorCount++;
+      const result = await generateVariant(imageFile, variantName);
+      if (result.success) {
+        successCount++;
+      } else {
+        errorCount++;
+      }
     }
   }
 
