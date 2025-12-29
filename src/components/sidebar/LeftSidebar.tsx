@@ -42,7 +42,7 @@ const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
           <div className="flex flex-wrap gap-3 items-center">
             <Link
               to="/#contact"
-              className="inline-flex items-center gap-2 text-muted-foreground py-2 text-sm font-medium hover:text-primary transition-colors"
+              className="inline-flex items-center gap-2 text-foreground py-2 text-sm font-medium hover:text-primary transition-colors"
             >
               <Mail className="w-4 h-4" />
               Get in touch
@@ -53,7 +53,7 @@ const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
             <a
               href="/alex-leibhammer-cv.pdf"
               download
-              className="inline-flex items-center gap-2 text-muted-foreground py-2 text-sm font-medium hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-2 text-foreground py-2 text-sm font-medium hover:text-foreground transition-colors"
             >
               <Download className="w-4 h-4" />
               Download CV
