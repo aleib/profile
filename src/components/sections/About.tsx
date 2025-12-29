@@ -1,22 +1,10 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-
 const About = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
     <section id="about" className="pt-0 pb-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/5 to-transparent" />
 
       <div className="section-container relative z-10">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="section-inner"
-        >
+        <div className="section-inner">
           {/* <h2 className="text-2xl sm:text-3xl font-display font-bold mb-8">
             About Me
           </h2> */}
@@ -73,7 +61,7 @@ const About = () => {
               </div>
             ))}
           </motion.div> */}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
