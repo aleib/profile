@@ -61,7 +61,7 @@ const Experience = () => {
   }, []);
 
   return (
-    <section id="experience" className="pb-24 relative -mx-10">
+    <section id="experience" className="pb-24 lg:pb-24 relative lg:-mx-10">
       <div className="section-container">
         <motion.div
           ref={ref}
@@ -72,7 +72,7 @@ const Experience = () => {
           {/* <h2 className="section-header">Experience</h2> */}
 
           <div className="relative max-w-[51rem] mx-auto">
-            <div className="space-y-4">
+            <div className="space-y-12 lg:space-y-4">
               {experiences.map((exp, index) => (
                 <motion.div
                   key={exp.company}
@@ -92,7 +92,7 @@ const Experience = () => {
                         openExternal(exp.url);
                       }
                     }}
-                    className="group glow-border rounded-xl p-6 outline-none transition-all duration-300 border border-transparent bg-transparent shadow-none cursor-pointer hover:bg-card/80 hover:backdrop-blur-xl hover:border-border/50 hover:shadow-[var(--shadow-md)] focus-visible:ring-2 focus-visible:ring-primary/60"
+                    className="group lg:glow-border rounded-xl lg:p-6 outline-none transition-all duration-300 lg:border border-transparent bg-transparent shadow-none cursor-pointer hover:bg-card/80 hover:backdrop-blur-xl hover:border-border/50 hover:shadow-[var(--shadow-md)] focus-visible:ring-2 focus-visible:ring-primary/60"
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-[80px_1fr] gap-2 sm:gap-6">
                       {/* Dates-as-bullets */}
@@ -161,7 +161,7 @@ const Experience = () => {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="mt-2 text-left ml-6"
+              className="mt-12 lg:mt-6 text-left lg:ml-6"
             >
               <Link
                 to="/experience"

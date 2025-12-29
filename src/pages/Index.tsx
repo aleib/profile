@@ -5,6 +5,7 @@ import Skills from "@/components/sections/Skills";
 import Work from "@/components/sections/Work";
 import { SEO } from "@/components/SEO";
 import LeftSidebar from "@/components/sidebar/LeftSidebar";
+import MobileNav from "@/components/sidebar/MobileNav";
 import { usePointerGlow } from "@/hooks/usePointerGlow";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { cn } from "@/lib/utils";
@@ -80,7 +81,7 @@ const Index = () => {
           />
         </div>
 
-        <div className="section-container relative z-10 lg:flex lg:gap-24">
+        <div className="max-w-screen-2xl mx-auto px-6 lg:px-8 relative z-10 lg:flex lg:gap-24">
           {/* Left sidebar */}
           <LeftSidebar
             navSections={navSections}
@@ -97,6 +98,9 @@ const Index = () => {
             <Contact />
           </main>
         </div>
+
+        {/* Mobile floating nav */}
+        <MobileNav navSections={navSections} activeSectionId={activeSectionId} />
       </div>
     </>
   );

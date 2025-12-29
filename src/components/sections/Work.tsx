@@ -47,7 +47,7 @@ const Work = () => {
         >
           <h2 className="sr-only">Products</h2>
 
-          <div className="grid md:grid-cols-1 gap-4 max-w-[51rem] mx-auto">
+          <div className="grid md:grid-cols-1 gap-10 lg:gap-4 max-w-[51rem] mx-auto">
             {featuredWorkProjects.map((project, index) => {
               const detailsId = `${detailsIdPrefix}-${toDomIdSegment(
                 project.name
@@ -66,7 +66,7 @@ const Work = () => {
                   transition={{ delay: index * 0.15, duration: 0.6 }}
                   className="relative"
                 >
-                  <div className="group glow-border rounded-xl p-6 transition-all duration-300 border border-transparent bg-transparent shadow-none hover:bg-background/50 hover:backdrop-blur-xl hover:border-border/10 hover:shadow-[var(--shadow-md)]">
+                  <div className="group glow-border rounded-xl py-6 lg:px-6 transition-all duration-300 border border-transparent bg-transparent shadow-none hover:bg-background/50 hover:backdrop-blur-xl hover:border-border/10 hover:shadow-[var(--shadow-md)]">
                     <div className="grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-4 sm:gap-6">
                       <div className="overflow-hidden rounded-sm border border-border/30 bg-secondary/10 h-fit">
                         {project.nameLink ? (
@@ -84,7 +84,7 @@ const Work = () => {
                               sizes="(max-width: 640px) 100vw, 200px"
                               alt={project.imageAlt}
                               loading="lazy"
-                              className="w-full aspect-[4/2.6] object-cover transition-transform duration-300 hover:scale-[1.05] cursor-pointer"
+                              className="w-full aspect-[4/2.7] object-cover transition-transform duration-300 hover:scale-[1.05] cursor-pointer"
                             />
                           </a>
                         ) : (
@@ -231,7 +231,7 @@ const Work = () => {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="mt-0 text-left ml-6"
+              className="mt-0 text-left lg:ml-6"
             >
               <Link
                 to="/work"

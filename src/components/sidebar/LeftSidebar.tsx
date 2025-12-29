@@ -22,11 +22,11 @@ type LeftSidebarProps = {
  */
 const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
   return (
-    <aside className="sticky top-0 self-start z-20 bg-background/80 backdrop-blur-xl border-b border-border/50 pt-6 pb-6 lg:z-auto lg:bg-transparent lg:backdrop-blur-0 lg:border-b-0 lg:pt-0 lg:pb-0 lg:top-0 lg:h-screen lg:w-[22rem] lg:flex lg:flex-col lg:justify-between lg:py-20">
+    <aside className="pt-6 pb-6 lg:sticky lg:top-0 lg:self-start lg:z-auto lg:bg-transparent lg:backdrop-blur-0 lg:border-b-0 lg:pt-0 lg:pb-0 lg:h-screen lg:w-[22rem] lg:flex lg:flex-col lg:justify-between lg:py-20">
       <div>
         <div className="space-y-4">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mt-20">
+            <h1 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mt-8 lg:mt-20">
               Alex Leibhammer
             </h1>
             <p className="mt-3 text-lg sm:text-xl font-display font-medium gradient-text">
@@ -61,8 +61,8 @@ const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
           </div>
         </div>
 
-        <nav className="mt-8 lg:mt-14" aria-label="Page sections">
-          <ul className="flex flex-wrap gap-x-8 gap-y-3 lg:block lg:space-y-3">
+        <nav className="hidden lg:block mt-14" aria-label="Page sections">
+          <ul className="space-y-3">
             {navSections.map((item) => {
               const isActive = item.id === activeSectionId;
               return (
@@ -93,7 +93,9 @@ const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
         </nav>
       </div>
 
-      <SidebarFooter />
+      <div className="hidden lg:block">
+        <SidebarFooter />
+      </div>
     </aside>
   );
 };
