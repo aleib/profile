@@ -37,17 +37,16 @@ const SidebarFooter = () => {
         >
           <Mail className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
         </a>
-        <div
+        <button
           className="group p-2 rounded-lg bg-secondary/40 hover:bg-secondary cursor-pointer"
-          aria-label="Theme"
+          onClick={() => setThemeMode(mode === "light" ? "dark" : "light")}
+          aria-label="Toggle theme"
         >
           <Icon
             className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors"
-            onClick={() => setThemeMode(mode === "light" ? "dark" : "light")}
             aria-hidden="true"
-            aria-label="Toggle theme"
           />
-        </div>
+        </button>
       </div>
     </div>
   );
