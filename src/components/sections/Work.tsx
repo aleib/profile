@@ -45,7 +45,7 @@ const Work = () => {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* <h2 className="section-header">Products</h2> */}
+          <h2 className="sr-only">Products</h2>
 
           <div className="grid md:grid-cols-1 gap-4 max-w-[51rem] mx-auto">
             {featuredWorkProjects.map((project, index) => {

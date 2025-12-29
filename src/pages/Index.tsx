@@ -59,8 +59,9 @@ const Index = () => {
     <>
       <SEO path="/" />
       <div
+        id="container"
         ref={containerRef}
-        className="min-h-screen dark:bg-slate-950 light:bg-slate-50 relative"
+        className="min-h-screen dark:bg-slate-950 light:bg-slate-50 relative group/container"
       >
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           {/* <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" /> */}
@@ -72,7 +73,7 @@ const Index = () => {
             )}
             style={glowStyle}
           />
-          <div className="absolute top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float transition-opacity opacity-0  duration-1000 delay-[5s] group-hover/container:opacity-100" />
           <div
             className="absolute bottom-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float"
             style={{ animationDelay: "3s" }}

@@ -39,18 +39,21 @@ const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
             practical engineering.
           </p>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 items-center">
             <Link
               to="/#contact"
-              className="inline-flex items-center gap-2 rounded-lg bg-primary/15 text-primary px-3 py-2 text-sm font-medium hover:bg-primary/20 transition-colors"
+              className="inline-flex items-center gap-2 text-muted-foreground py-2 text-sm font-medium hover:text-primary transition-colors"
             >
               <Mail className="w-4 h-4" />
               Get in touch
             </Link>
+            <span className="my-0 text-muted-foreground text-xs opacity-50">
+              •
+            </span>
             <a
               href="/alex-leibhammer-cv.pdf"
               download
-              className="inline-flex items-center gap-2 rounded-lg bg-secondary/50 text-foreground px-3 py-2 text-sm font-medium hover:bg-secondary transition-colors"
+              className="inline-flex items-center gap-2 text-muted-foreground py-2 text-sm font-medium hover:text-foreground transition-colors"
             >
               <Download className="w-4 h-4" />
               Download CV
@@ -71,7 +74,7 @@ const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
                       "group inline-flex items-center gap-3 text-sm font-medium transition-colors",
                       isActive
                         ? "text-foreground"
-                        : "text-muted-foreground hover:text-foreground",
+                        : "text-zinc-600 dark:text-zinc-400 hover:text-foreground",
                     ].join(" ")}
                   >
                     <span
