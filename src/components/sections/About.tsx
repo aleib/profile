@@ -11,27 +11,22 @@ const About = () => {
 
           <div className="space-y-6 text-base sm:text-lg leading-relaxed text-foreground/70 font-normal">
             <p>
-              I'm an software engineer and founder passionate about building
-              products that blend thoughtful design and practical engineering.
+              I'm a senior software engineer and former startup founder who
+              builds high-impact products at the intersection of design,
+              engineering, and systems thinking.
             </p>
             <p>
-              Recently I've focused on production-grade frontends for data and
-              AI-driven products. Over the last five years I've co-founded and
-              delivered multiple venture products across visual analytics, model
-              orchestration, workflow automation, and content systems.
+              Over the last decade, I've led and shipped production software
+              across AI, data platforms, and workflow automation — from early
+              prototypes to systems used by hundreds of thousands of people. I
+              specialize in frontend architecture, complex UIs, and turning
+              ambiguous product problems into reliable, scalable software.
             </p>
-
             <p>
-              I combine frontend expertise with product sensibility—owning
-              architecture, reliability, performance, and execution. I've
-              delivered collaborative data canvases, AI-first workspaces for
-              thousands of parallel tasks, consumer features reaching 300K+
-              users, and agentic workflow systems.
-            </p>
-
-            <p>
-              I'm most effective where UX quality, engineering execution, and
-              pragmatic leadership intersect.
+              I work best in teams that value autonomy, quality, and clear
+              thinking. I bring founder-level ownership, strong technical
+              judgment, and a deep respect for craft — helping teams move faster
+              without breaking what matters.
             </p>
           </div>
 
