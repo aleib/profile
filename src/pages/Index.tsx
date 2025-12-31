@@ -74,7 +74,7 @@ const Index = () => {
             )}
             style={glowStyle}
           />
-          <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float transition-opacity opacity-0  duration-1000 delay-[5s] group-hover/container:opacity-100" />
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float transition-opacity opacity-0  duration-1000 delay-1000 group-hover/container:opacity-100" />
           <div
             className="absolute bottom-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float"
             style={{ animationDelay: "3s" }}
