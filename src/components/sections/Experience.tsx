@@ -119,7 +119,7 @@ const Experience = () => {
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
                               onKeyDown={(e) => e.stopPropagation()}
-                              className="group/link text-sm text-foreground/80 font-medium mt-1 hover:underline group-hover/experience:text-primary transition-colors flex items-center gap-1"
+                              className="group/link text-sm text-foreground font-medium mt-1 hover:underline group-hover/experience:text-primary transition-colors flex items-center gap-1"
                             >
                               {exp.company}
                               <ArrowUpRight className="w-4 h-4 shrink-0 opacity-0 group-hover/experience:opacity-100 transition-opacity" />
@@ -127,7 +127,7 @@ const Experience = () => {
                           </div>
                         </div>
 
-                        <p className="mt-2 text-base text-muted-foreground leading-relaxed">
+                        <p className="mt-2 text-base text-foreground/70 leading-relaxed">
                           {exp.summary}
                         </p>
 

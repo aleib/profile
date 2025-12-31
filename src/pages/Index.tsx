@@ -14,7 +14,7 @@ import { useLocation } from "react-router-dom";
 
 const navSections = [
   { id: "about", label: "About" },
-  { id: "work", label: "Products" },
+  { id: "work", label: "Selected Work" },
   // { id: "metrics", label: "Impact" },
   { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
@@ -100,7 +100,10 @@ const Index = () => {
         </div>
 
         {/* Mobile floating nav */}
-        <MobileNav navSections={navSections} activeSectionId={activeSectionId} />
+        <MobileNav
+          navSections={navSections}
+          activeSectionId={activeSectionId}
+        />
       </div>
     </>
   );

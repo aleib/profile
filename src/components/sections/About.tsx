@@ -9,7 +9,7 @@ const About = () => {
             About Me
           </h2> */}
 
-          <div className="space-y-6 text-base sm:text-lg leading-relaxed text-foreground/70 font-normal">
+          <div className="space-y-6 text-base sm:text-lg leading-relaxed text-foreground/80 font-normal">
             <p>
               I'm a senior software engineer and former startup founder who
               builds high-impact products at the intersection of design,
