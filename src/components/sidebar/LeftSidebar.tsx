@@ -26,23 +26,23 @@ const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
       <div>
         <div className="space-y-4">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-display font-bold tracking-tight mt-8 lg:mt-20">
+            <h1 className="text-3xl sm:text-4xl sm:text-[2.5rem] font-display font-bold tracking-tight mt-8 lg:mt-20">
               Alex Leibhammer
             </h1>
             <p className="mt-3 text-lg sm:text-xl font-display font-medium gradient-text">
-              Software Engineer • Founder
+              Senior Software Engineer
             </p>
           </div>
 
-          <p className="text-muted-foreground leading-relaxed max-w-prose">
-            Passionate about building products that blend thoughtful design and
-            practical engineering.
+          <p className="text-foreground/80 leading-relaxed max-w-prose">
+            Frontend, Systems & Product Thinking, building high-impact software
+            through thoughtful design and durable engineering.
           </p>
 
           <div className="flex flex-wrap gap-3 items-center">
             <Link
               to="/#contact"
-              className="inline-flex items-center gap-2 text-foreground py-2 text-sm font-medium hover:text-primary transition-colors"
+              className="inline-flex items-center gap-2 text-foreground/80 py-2 text-sm font-medium hover:text-primary transition-colors"
             >
               <Mail className="w-4 h-4" />
               Get in touch
@@ -53,7 +53,7 @@ const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
             <a
               href="/alex-leibhammer-cv.pdf"
               download
-              className="inline-flex items-center gap-2 text-foreground py-2 text-sm font-medium hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-2 text-foreground/80 py-2 text-sm font-medium hover:text-foreground transition-colors"
             >
               <Download className="w-4 h-4" />
               Download CV
