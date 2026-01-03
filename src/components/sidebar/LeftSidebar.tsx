@@ -51,7 +51,7 @@ const LeftSidebar = ({ navSections, activeSectionId }: LeftSidebarProps) => {
               •
             </span>
             <a
-              href="/alex-leibhammer-cv.pdf"
+              href="/Alex-Leibhammer-Resume-2026.pdf"
               download
               className="inline-flex items-center gap-2 text-foreground/80 py-2 text-sm font-medium hover:text-foreground transition-colors"
             >
