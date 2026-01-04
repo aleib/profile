@@ -25,7 +25,7 @@ const experiences: ExperienceItem[] = [
     company: "Hunch",
     role: "Co-founder",
     period: "2021 - 2025",
-    url: "https://hunch.tools/",
+    url: "https://www.linkedin.com/company/hunchtools",
     summary:
       "Co-founded Hunch, a venture-backed startup that provides AI-powered tools for teams — model orchestration, templates, and batch execution. Led product and engineering; designed the core canvas and parallel execution system.",
     current: false,

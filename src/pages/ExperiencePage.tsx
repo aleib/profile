@@ -38,7 +38,7 @@ const allExperiences: Experience[] = [
     company: "Hunch",
     role: "Co-founder",
     period: "Aug 2021 – Present",
-    url: "https://hunch.tools/",
+    url: "https://www.linkedin.com/company/hunchtools",
     icon: BrainCog,
     description: [
       "Venture-backed AI platform for teams",
@@ -62,7 +62,7 @@ const allExperiences: Experience[] = [
     company: "Cape Networks",
     role: "Frontend Lead",
     period: "Mar 2016 – Apr 2018",
-    url: "https://www.arubanetworks.com/",
+    url: "https://www.linkedin.com/company/cape-networks/",
     icon: Wifi,
     description: [
       "Cape is now a Hewlett Packard Enterprise company (Aruba)",

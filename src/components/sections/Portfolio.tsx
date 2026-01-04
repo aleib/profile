@@ -46,7 +46,7 @@ const projects: Project[] = [
     name: "Hunch",
     description:
       "AI workspace and execution system. Model orchestration, structured templates, and execution primitives for complex research, writing, and product workflows.",
-    url: "https://hunch.tools/",
+    url: "https://app.hunch.tools/",
     tags: ["AI", "Workspace", "Orchestration"],
     period: "2023 – 2024",
   },

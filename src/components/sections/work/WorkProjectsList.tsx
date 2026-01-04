@@ -1,7 +1,7 @@
 import type { WorkProject } from "@/data/work";
 import { cn, getResponsiveSrcset } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Play } from "lucide-react";
+import { ArrowUpRight, Play, Youtube } from "lucide-react";
 
 type WorkProjectsListProps = {
   projects: WorkProject[];
@@ -131,24 +131,37 @@ const WorkProjectsList = ({ projects, className }: WorkProjectsListProps) => {
                     ) : null}
                   </div>
 
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium py-1 mt-4 text-muted-foreground group-hover:text-primary transition-colors hover:underline"
-                  >
-                    {project.isVideo ? (
-                      <>
-                        <Play className="w-3.5 h-3.5" />
-                        Watch Demo
-                      </>
-                    ) : (
-                      <>
-                        Visit site
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </>
-                    )}
-                  </a>
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-1 mt-4">
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm font-medium py-1 text-muted-foreground group-hover:text-primary transition-colors hover:underline"
+                    >
+                      {project.isVideo ? (
+                        <>
+                          <Play className="w-3.5 h-3.5" />
+                          Watch Demo
+                        </>
+                      ) : (
+                        <>
+                          Visit site
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </>
+                      )}
+                    </a>
+                    {project.youtubeUrl ? (
+                      <a
+                        href={project.youtubeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm font-medium py-1 text-muted-foreground group-hover:text-primary transition-colors hover:underline"
+                      >
+                        <Youtube className="w-3.5 h-3.5" />
+                        YouTube
+                      </a>
+                    ) : null}
+                  </div>
                 </div>
               </div>
             </div>
