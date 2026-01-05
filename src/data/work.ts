@@ -108,7 +108,7 @@ export const allWorkProjects: WorkProject[] = [
   },
   {
     name: "Hunch — AI-First Workspace",
-    nameLink: "https://app.hunch.tools/",
+    nameLink: "https://hunch.tools/",
     description:
       "Built a collaborative AI workspace enabling teams to design, run, and scale complex research and automation workflows.",
     moreInfo: [
@@ -116,7 +116,7 @@ export const allWorkProjects: WorkProject[] = [
       "Designed systems for model routing, batching, and parallel execution across LLMs and tools.",
       "Led frontend architecture and design systems to support rapid iteration and long-term maintainability.",
     ],
-    url: "https://app.hunch.tools/",
+    url: "https://hunch.tools/",
     youtubeUrl: "https://www.youtube.com/@HunchTools",
     tags: ["AI", "Workspace", "Orchestration"],
     period: "May 2023 - Dec 2024",
